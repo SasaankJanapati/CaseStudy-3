@@ -28,11 +28,11 @@ class Main {
                     } else {
                         System.out.println("\t\tYou have entered wrong password");
                     }
-                } else {
+                } /*else {
                     System.out.println("\t\tYou have entered wrong Customer username");
                     mainFunction(t, Cu);
                     return;
-                }
+                }*/
             }
         } else if (t == 2) {
             System.out.print("\t\t\tIIT INSURANCE\n\n\t\tWelcome to Agent Info Portal\n\t\tEnter your username : ");
