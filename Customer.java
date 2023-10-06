@@ -34,6 +34,10 @@ public class Customer {
         this.password = password;
     }
 
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     public String getUserName() {
         return userName;
     }
@@ -41,9 +45,6 @@ public class Customer {
     public void setUserName(String userName) {
         this.userName = userName;
     }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
 
     Customer() {
         Scanner sc = new Scanner(System.in);
@@ -65,7 +66,4 @@ public class Customer {
         policies.add(policy);
     }
 
-    public String getName() { // later change it to id
-        return name;
-    }
 }
