@@ -10,6 +10,9 @@ public class Database {
     protected void addCustomer(Customer customer){
         customers.add(customer);
     }
+    protected void addClaim(Claim claim){
+        claims.add(claim);
+    }
 
     protected Customer searchCustomer(String name){
         for (Customer customer : customers) {

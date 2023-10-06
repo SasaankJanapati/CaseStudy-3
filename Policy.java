@@ -22,4 +22,8 @@ public class Policy {
         System.out.println("Enter the type");
         this.period = sc.nextDouble();
     }
+
+    protected String getId() {
+        return id;
+    }
 }

@@ -19,4 +19,7 @@ public class Agent extends Database {
             this.addPolicy(policy);
         }
     }
+    protected void createNewClaim(Claim claim){
+        this.addClaim(claim);
+    }
 }

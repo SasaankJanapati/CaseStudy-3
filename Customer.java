@@ -8,6 +8,7 @@ public class Customer {
     private String userName;
     private String password;
     private ArrayList<Policy> policies;
+    private ArrayList<Claim> claims;
 
     Customer(){
         Scanner sc = new Scanner(System.in);
@@ -29,7 +30,24 @@ public class Customer {
         policies.add(policy);
     }
 
-    public String getName() { //later change it to id
+    protected void addClaim(Claim claim){
+        claims.add(claim);
+    }
+
+    protected void createNewClaim(){
+        Scanner sc = new Scanner(System.in);
+        String policyId = sc.next();
+        for (Policy policy : policies) {
+            if(policy.getId().compareTo(policyId) != 0){
+                System.out.println("Policy id not found");
+            }else{
+                Claim claim = new Claim(policyId);
+                
+            }
+        }
+    }
+
+    protected String getName() { //later change it to id
         return name;
     }
 }
