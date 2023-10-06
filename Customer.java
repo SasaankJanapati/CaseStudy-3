@@ -10,7 +10,44 @@ public class Customer {
     private ArrayList<Policy> policies;
     private ArrayList<Claim> claims;
 
-    Customer(){
+    // Customer(){}
+    Customer(String name, String phoneNumber, String email, String userName, String password) {
+        this.setName(name);
+        this.setPhoneNumber(phoneNumber);
+        this.email = email;
+        this.setUserName(userName);
+        this.setPassword(password);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    Customer() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter your name");
         this.name = sc.next();
@@ -26,7 +63,7 @@ public class Customer {
         this.password = sc.next();
     }
 
-    protected void addPolicy(Policy policy){
+    protected void addPolicy(Policy policy) {
         policies.add(policy);
     }
 
