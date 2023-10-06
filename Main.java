@@ -24,6 +24,7 @@ class Main {
                     s = sc.next();
                     if (c.getPassword().equals(s)) {
                         System.out.println("\t\tWelcome " + c.getName());
+
                     } else {
                         System.out.println("\t\tYou have entered wrong password");
                     }
