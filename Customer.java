@@ -84,7 +84,5 @@ public class Customer {
         }
     }
 
-    protected String getName() { //later change it to id
-        return name;
-    }
+
 }
