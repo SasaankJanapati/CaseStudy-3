@@ -9,18 +9,38 @@ public class Customer {
     private String password;
     private ArrayList<Policy> policies;
 
-    Customer() {
+    // Customer(){}
+    Customer(String name, String phoneNumber, String email, String userName, String password) {
+        this.setName(name);
+        this.setPhoneNumber(phoneNumber);
+        this.email = email;
+        this.setUserName(userName);
+        this.setPassword(password);
     }
-    /*
-     * Customer(String name, String phoneNumber, String email, String userName,
-     * String password) {
-     * this.name = name;
-     * this.setPhoneNumber(phoneNumber);
-     * this.email = email;
-     * this.userName = userName;
-     * this.password = password;
-     * }
-     */
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     public String getPhoneNumber() {
         return phoneNumber;
