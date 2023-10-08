@@ -1,9 +1,11 @@
 import java.util.*;
-import java.util.concurrent.atomic.AtomicMarkableReference;
 
-class Main {
+class Main extends Customer {
+    static Main Mn=new Main();
+    static InsuranceDisplay Dis=new InsuranceDisplay();
     static Scanner sc = new Scanner(System.in);
 
+    // Predefined Users for Test case
     static void preDefined(ArrayList<Customer> Cu) {
         Cu.add(new Customer("Akilesh", "1234567899", "ak@gmaill.com", "ak11", "akilesh"));
         Cu.add(new Customer("Mokshith", "1230567899", "mo@gmaill.com", "mo11", "mokshith"));
@@ -12,29 +14,16 @@ class Main {
         Cu.add(new Customer("Sasaank", "1234767899", "sa@gmaill.com", "sa11", "sasaank"));
     }
 
-    static void mainFunction(int t, ArrayList<Customer> Cu) {
-        if (t == 1) {
-            System.out.print("\t\t\tIIT INSURANCE\n\n\t\tWelcome to Costumer Info Portal\n\t\tEnter your username : ");
+    public void mainFunction(int t, ArrayList<Customer> Cu) throws InterruptedException {
+        if(t==1){
+            Dis.customerDisplay();
             String s = sc.next();
-            for (Customer c : Cu) {
-                if (c.getUserName().equals(s)) {
-                    String u = s;
-                    System.out.println("\t\tCustomer Username : " + u);
-                    System.out.print("\t\tEnter your password : ");
-                    s = sc.next();
-                    if (c.getPassword().equals(s)) {
-                        System.out.println("\t\tWelcome " + c.getName());
-
-                    } else {
-                        System.out.println("\t\tYou have entered wrong password");
-                    }
-                } /*else {
-                    System.out.println("\t\tYou have entered wrong Customer username");
-                    mainFunction(t, Cu);
-                    return;
-                }*/
+            if(userNameExistence(t,s, Cu)){
+                System.out.println("This will go to Customer Home Page");
             }
-        } else if (t == 2) {
+            
+        }else if(t==2){
+            System.out.print("\033[H\033[2J"); 
             System.out.print("\t\t\tIIT INSURANCE\n\n\t\tWelcome to Agent Info Portal\n\t\tEnter your username : ");
             String s = sc.next();
             for (Customer c : Cu) {
@@ -57,14 +46,12 @@ class Main {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException  {
         ArrayList<Customer> Cu = new ArrayList<Customer>();
         ArrayList<Agent> Ag = new ArrayList<Agent>();
         preDefined(Cu);
-        String s = "";
-        System.out.println("\t\tWelcome to IIT INUSRANCE\n\t\tRole\n\t\tCustomer \tPress 1\n\t\tAgent\t\tPress 2");
+        Dis.welcomeDisplay1();
         int t = sc.nextInt();
-        mainFunction(t, Cu);
-
+        Mn.mainFunction(t, Cu);
     }
 }

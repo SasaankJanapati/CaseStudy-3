@@ -1,6 +1,8 @@
 import java.util.*;
 
 public class Customer {
+    static Main Mn=new Main();
+    static Scanner sc=new Scanner(System.in);
     private String name;
     private String phoneNumber;
     private String email;
@@ -47,7 +49,8 @@ public class Customer {
         this.userName = userName;
     }
 
-    Customer() {
+    Customer(){}
+    /*{
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter your name");
         this.name = sc.next();
@@ -61,7 +64,7 @@ public class Customer {
         this.userName = sc.next();
         System.out.println("Enter your name");
         this.password = sc.next();
-    }
+    }*/
 
     protected void addPolicy(Policy policy) {
         policies.add(policy);
