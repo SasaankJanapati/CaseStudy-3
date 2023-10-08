@@ -2,7 +2,6 @@ import java.util.*;
 
 public class Policy {
     private boolean isActive;
-    private boolean isLapsed;
     private String type;
     private String id;
     private double premiumAmount;
@@ -11,7 +10,6 @@ public class Policy {
 
     Policy() {
         this.isActive = true;
-        this.isLapsed = true;
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the type");
         this.type = sc.next();
@@ -28,4 +26,14 @@ public class Policy {
     protected String getId() {
         return id;
     }
+    protected void setCoverage(double coverage) {
+        this.coverage = coverage;
+    }
+    protected boolean getIsActive(){
+        return this.isActive;
+    }
+    protected void setIsActive(boolean isActive) {
+        this.isActive = isActive;
+    }
+    
 }
