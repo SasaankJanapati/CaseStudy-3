@@ -1,8 +1,6 @@
 import java.util.*;
 
 public class Customer {
-    static Main2 Mn=new Main2();
-    static Scanner sc=new Scanner(System.in);
     private String name;
     private String phoneNumber;
     private String email;
