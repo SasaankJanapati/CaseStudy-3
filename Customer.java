@@ -1,6 +1,7 @@
 import java.util.*;
 
 public class Customer {
+    static Main Mn=new Main();
     static Scanner sc=new Scanner(System.in);
     private String name;
     private String phoneNumber;
@@ -88,19 +89,21 @@ public class Customer {
     }
 
     
-    protected static boolean userNameExistence(int t,String s,ArrayList<Customer> Cu){
-        Main Mn=new Main();
+    protected static boolean userNameExistence(int t,String s,ArrayList<Customer> Cu) throws InterruptedException{
+        
         for (Customer c : Cu) {
             if (c.getUserName().equals(s)) {
-                String u = s;
-                System.out.println("\t\tCustomer Username : " + u);
+                //String u = s;
+                System.out.println("\t\tCustomer Username : " + s);
+                System.out.println("Hi");
                 System.out.print("\t\tEnter your password : ");
                 s = sc.next();
-                if (c.getPassword().equals(s)) {
+                if(c.getPassword().equals(s)) {
                     System.out.println("\t\tWelcome " + c.getName());
 
-                } else {
+                }else{
                     System.out.println("\t\tYou have entered wrong password");
+                    Thread.sleep(10000);
                     return userNameExistence(t,s, Cu);
                 }
             }else{

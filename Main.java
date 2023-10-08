@@ -14,7 +14,7 @@ class Main extends Customer {
         Cu.add(new Customer("Sasaank", "1234767899", "sa@gmaill.com", "sa11", "sasaank"));
     }
 
-    public void mainFunction(int t, ArrayList<Customer> Cu) {
+    public void mainFunction(int t, ArrayList<Customer> Cu) throws InterruptedException {
         if(t==1){
             Dis.customerDisplay();
             String s = sc.next();
@@ -46,7 +46,7 @@ class Main extends Customer {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException  {
         ArrayList<Customer> Cu = new ArrayList<Customer>();
         ArrayList<Agent> Ag = new ArrayList<Agent>();
         preDefined(Cu);

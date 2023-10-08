@@ -30,7 +30,7 @@ public class Agent extends Database {
     protected void createNewClaim(Claim claim) {
         this.addClaim(claim);
     }
-    protected void updatePolicy(String policyId,){
+    protected void updatePolicy(String policyId){
         
     }
 }
