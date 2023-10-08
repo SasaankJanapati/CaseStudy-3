@@ -87,6 +87,7 @@ public class Customer {
         }
     }
 
+    
     protected static boolean userNameExistence(int t,String s,ArrayList<Customer> Cu){
         Main Mn=new Main();
         for (Customer c : Cu) {
