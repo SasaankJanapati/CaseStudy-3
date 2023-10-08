@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Customer {
-    static Main Mn=new Main();
+    static Main2 Mn=new Main2();
     static Scanner sc=new Scanner(System.in);
     private String name;
     private String phoneNumber;
@@ -11,15 +11,6 @@ public class Customer {
     private String password;
     private ArrayList<Policy> policies;
     private ArrayList<Claim> claims;
-
-    // Customer(){}
-    Customer(String name, String phoneNumber, String email, String userName, String password) {
-        this.setName(name);
-        this.setPhoneNumber(phoneNumber);
-        this.email = email;
-        this.setUserName(userName);
-        this.setPassword(password);
-    }
 
     public String getName() {
         return name;
@@ -54,15 +45,15 @@ public class Customer {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter your name");
         this.name = sc.next();
-        System.out.println("Enter your name");
+        System.out.println("Enter your phone number");
         this.phoneNumber = sc.next();
-        System.out.println("Enter your name");
+        System.out.println("Enter your email");
         this.email = sc.next();
-        System.out.println("Enter your name");
+        System.out.println("Enter your address");
         this.address = sc.next();
-        System.out.println("Enter your name");
+        System.out.println("Enter your user name");
         this.userName = sc.next();
-        System.out.println("Enter your name");
+        System.out.println("Enter your password");
         this.password = sc.next();
     }
 
