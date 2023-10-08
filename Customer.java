@@ -79,10 +79,50 @@ public class Customer {
                 System.out.println("Policy id not found");
             } else {
                 Claim claim = new Claim(policyId);
-                Agent agent = new Agent("", "", "");
-                agent.addClaim(claim);
+                new Agent(null,null,null,null).addClaim(claim);
             }
         }
     }
-
+    protected void displayPolicies(){
+        System.out.println("Your policies");
+        for (Policy policy : policies) {
+            System.out.println(policy.getId());
+        }
+        boolean isValid = false;
+        while(!isValid){
+            System.out.println("Choose a Policy Id");
+            Scanner sc = new Scanner(System.in);
+            String policyId = sc.next();
+            for (Policy policy : policies) {
+                if(policy.getId().compareTo(policyId) == 0){
+                    policy.displayPolicy();
+                    isValid = true;
+                }
+            }
+            if(!isValid){
+                System.out.println("Invalid Policy Id");
+            }
+        }
+    }
+    protected void displayClaims(){
+        System.out.println("Your claims");
+        for (Claim claim : claims) {
+            System.out.println(claim.getId());
+        }
+        boolean isValid = false;
+        while(!isValid){
+            System.out.println("Choose a Claim Id");
+            Scanner sc = new Scanner(System.in);
+            String claimId = sc.next();
+            for (Claim claim : claims) {
+                if(claim.getId().compareTo(claimId) == 0){
+                    claim.displayClaim();
+                    isValid = true;
+                }
+            }
+            if(!isValid){
+                System.out.println("Invalid Claim Id");
+            }
+        }
+    }
 }

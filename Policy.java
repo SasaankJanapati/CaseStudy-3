@@ -2,6 +2,7 @@ import java.util.*;
 
 public class Policy {
     private boolean isActive;
+    private String lapseDate;
     private String type;
     private String id;
     private double premiumAmount;
@@ -34,6 +35,23 @@ public class Policy {
     }
     protected void setIsActive(boolean isActive) {
         this.isActive = isActive;
+    }
+    protected String getLapseDate() {
+        return lapseDate;
+    }
+    protected void setLapseDate(String lapseDate) {
+        this.lapseDate = lapseDate;
+    }
+    public double getPremiumAmount() {
+        return premiumAmount;
+    }
+    protected void displayPolicy(){
+        System.out.println("Policy Active : "+this.isActive);
+        System.out.println("Policy Type : "+this.type);
+        System.out.println("Premium Amount : "+this.premiumAmount);
+        System.out.println("Lapse Date: "+this.lapseDate);
+        System.out.println("Coverage : "+this.coverage);
+        System.out.println("Policy Peroid : "+this.period);
     }
     
 }
