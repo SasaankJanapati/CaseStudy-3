@@ -79,8 +79,7 @@ public class Customer {
                 System.out.println("Policy id not found");
             }else{
                 Claim claim = new Claim(policyId);
-                Agent agent = new Agent();
-                agent.addClaim(claim);
+                new Agent().addClaim(claim);
             }
         }
     }
