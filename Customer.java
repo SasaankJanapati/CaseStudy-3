@@ -1,14 +1,32 @@
 import java.util.*;
 
 public class Customer {
+    
+    static Scanner sc=new Scanner(System.in);
     private String name;
     private String phoneNumber;
     private String email;
     private String address;
     private String userName;
     private String password;
+    private boolean isBlocked = false;
+    public boolean isBlocked() {
+        return isBlocked;
+    }
+
+    public void setBlocked(boolean isBlocked) {
+        this.isBlocked = isBlocked;
+    }
     private ArrayList<Policy> policies;
     private ArrayList<Claim> claims;
+    Customer(String name, String phoneNumber, String email,String address, String userName, String password) {
+        this.setName(name);
+        this.setPhoneNumber(phoneNumber);
+        this.email = email;
+        this.address=address;
+        this.setUserName(userName);
+        this.setPassword(password);
+    }
 
     public String getName() {
         return name;
@@ -38,8 +56,8 @@ public class Customer {
         this.userName = userName;
     }
 
-    Customer()
-    {
+    Customer(){}
+    /*{
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter your name");
         this.name = sc.next();
@@ -53,8 +71,7 @@ public class Customer {
         this.userName = sc.next();
         System.out.println("Enter your password");
         this.password = sc.next();
-    }
-
+    }*/
     protected void addPolicy(Policy policy) {
         policies.add(policy);
     }
@@ -117,4 +134,6 @@ public class Customer {
             }
         }
     }
+
+    
 }

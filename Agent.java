@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Agent extends Database {
@@ -5,7 +6,7 @@ public class Agent extends Database {
     private String id;
     private String userName;
     private String password;
-
+    private boolean isBlocked=false;
     Agent(String name,String id,String userName,String password){
         this.name = name;
         this.id = id;
@@ -13,16 +14,40 @@ public class Agent extends Database {
         this.password = password;
         this.addAgent(this);
     }
-
+    
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public boolean isBlocked() {
+        return isBlocked;
+    }
+    public void setBlocked(boolean isBlocked) {
+        this.isBlocked = isBlocked;
+    }
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    public String getUserName() {
+        return userName;
+    }
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+    
     protected void createNewPolicy() {
         Customer customer = new Customer();
         Policy policy = new Policy();
         customer.addPolicy(policy);
         this.addPolicy(policy);
     }
-
-    protected void createNewPolicy(String name) {
-        Customer customer = this.searchCustomer(name);
+    protected void createNewPolicy(String name,ArrayList<Customer> Cu) {
+        Customer customer = this.searchCustomer(name,Cu);
         if (customer == null) {
             System.out.println("Customer not found");
         } else {
@@ -31,7 +56,6 @@ public class Agent extends Database {
             this.addPolicy(policy);
         }
     }
-
     protected void createNewClaim(Claim claim) {
         this.addClaim(claim);
     }

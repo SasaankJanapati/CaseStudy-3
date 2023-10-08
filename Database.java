@@ -1,5 +1,13 @@
 import java.util.*;
 public class Database extends Report{
+    static Scanner sc=new Scanner(System.in);
+    static void timeOut(int t) throws InterruptedException{
+        Thread.sleep(t);
+        System.out.print(".");
+        Thread.sleep(t);
+        System.out.print(".");
+        Thread.sleep(t);
+    }
     private ArrayList<Adjuster> adjusters;
     private ArrayList<Agent> agents;
     private ArrayList<Customer> customers;
@@ -23,14 +31,79 @@ public class Database extends Report{
         agents.add(agent);
     }
     
-    protected Customer searchCustomer(String name){
+    protected Customer searchCustomer(String name,ArrayList<Customer> customers){
         for (Customer customer : customers) {
-            if(customer.getName().compareTo(name) == 0){
+            if(customer.getUserName().compareTo(name) == 0){
                 return customer;
             }
         }
         return null;
     }
+    protected Agent searchAgent(String name,ArrayList<Agent> agents){
+        for (Agent agent : agents) {
+            if(agent.getUserName().compareTo(name) == 0){
+                return agent;
+            }
+        }
+        return null;
+    }
+    
+    protected boolean passwordVerification(Customer Cu,int count) throws InterruptedException{
+        System.out.print("\t\tPlease Enter you Password : ");
+
+        String password=sc.next();
+        if(!password.equals(Cu.getPassword())){
+            if(count>=1){
+                System.out.print("\033[H\033[2J");
+                System.out.println("\t\tWelcome to IIT INUSRANCE");
+                System.out.println("\t\t!!!You have entered an incorrect password\n\tYou have "+count+" attempts after which your account will be blocked for 24 hours");
+                return passwordVerification(Cu, count-=1);
+            }else{
+                // t=countdown time
+                int t=4;   
+                while(t>0){
+                System.out.print("\033[H\033[2J");
+                System.out.println("\t\tWelcome to IIT INUSRANCE\n\n\tCustomer UserName : "+Cu.getUserName());
+                System.out.print("\t\t!!!Incorrect Password Entered many times\n\t\tYour account is blocked for 24hrs\n\t\tPlease approach the Bank Manager for enguiry\n\t\tThe Screen will return to Main Menu in \' "+t+" \' sec\n\t\t\t\t.");
+                timeOut(500);
+                t--;
+                }
+                Cu.setBlocked(true);
+                //InsuranceManagement.mainFunction();
+                return false;
+            }
+        }
+        return true;
+    }
+    protected boolean passwordVerification(Agent Ag,int count) throws InterruptedException{
+        System.out.print("\t\tPlease Enter you Password : ");
+
+        String password=sc.next();
+        if(!password.equals(Ag.getPassword())){
+            if(count>=1){
+                System.out.print("\033[H\033[2J");
+                System.out.println("\t\tWelcome to IIT INUSRANCE");
+                System.out.println("\t\t!!!You have entered an incorrect password\n\tYou have "+count+" attempts after which your account will be blocked for 24 hours");
+                return passwordVerification(Ag, count-=1);
+            }else{
+                // t=countdown time
+                int t=4;   
+                while(t>0){
+                System.out.print("\033[H\033[2J");
+                System.out.println("\t\tWelcome to IIT INUSRANCE\n\n\tCustomer UserName : "+Ag.getUserName());
+                System.out.print("\t\t!!!Incorrect Password Entered many times\n\t\tYour account is blocked for 24hrs\n\t\tPlease approach the Bank Manager for enguiry\n\t\tThe Screen will return to Main Menu in \' "+t+" \' sec\n\t\t\t\t.");
+                timeOut(500);
+                t--;
+                }
+                Ag.setBlocked(true);
+                //InsuranceManagement.mainFunction();
+                return false;
+            }
+        }
+        return true;
+    }
+    
+
     protected Policy searchPolicy(String policyId){
         for (Policy policy : policies) {
             if(policy.getId().compareTo(policyId)==0){
