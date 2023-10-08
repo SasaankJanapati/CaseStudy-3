@@ -1,6 +1,7 @@
 import java.util.*;
 
 public class Customer {
+    static Scanner sc=new Scanner(System.in);
     private String name;
     private String phoneNumber;
     private String email;
@@ -47,7 +48,8 @@ public class Customer {
         this.userName = userName;
     }
 
-    Customer() {
+    Customer(){}
+    /*{
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter your name");
         this.name = sc.next();
@@ -61,7 +63,7 @@ public class Customer {
         this.userName = sc.next();
         System.out.println("Enter your name");
         this.password = sc.next();
-    }
+    }*/
 
     protected void addPolicy(Policy policy) {
         policies.add(policy);
@@ -85,5 +87,28 @@ public class Customer {
         }
     }
 
+    protected static boolean userNameExistence(int t,String s,ArrayList<Customer> Cu){
+        Main Mn=new Main();
+        for (Customer c : Cu) {
+            if (c.getUserName().equals(s)) {
+                String u = s;
+                System.out.println("\t\tCustomer Username : " + u);
+                System.out.print("\t\tEnter your password : ");
+                s = sc.next();
+                if (c.getPassword().equals(s)) {
+                    System.out.println("\t\tWelcome " + c.getName());
+
+                } else {
+                    System.out.println("\t\tYou have entered wrong password");
+                    return userNameExistence(t,s, Cu);
+                }
+            }else{
+                System.out.println("\t\tYou have entered wrong Customer username");
+                Mn.mainFunction(t, Cu);
+                return true;
+            }
+        }
+        return true;
+    }
 
 }
