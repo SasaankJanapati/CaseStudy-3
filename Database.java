@@ -22,10 +22,7 @@ public class Database extends Report{
     protected void addAgent(Agent agent){
         agents.add(agent);
     }
-    protected void financialSummaryAdder(String newTransaction){
-        this.fiancialSummary = this.fiancialSummary+newTransaction+'\n';
-    }
-
+    
     protected Customer searchCustomer(String name){
         for (Customer customer : customers) {
             if(customer.getName().compareTo(name) == 0){
@@ -76,7 +73,7 @@ public class Database extends Report{
         System.out.println();
        } 
     }
-    protected void financialSummaries(){
-
+    protected void financialSummaryAdder(String newTransaction){
+        this.fiancialSummary = this.fiancialSummary+newTransaction+'\n';
     }
 }
