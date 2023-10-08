@@ -2,6 +2,7 @@ import java.util.*;
 
 public class Policy {
     private boolean isActive;
+    private boolean isLapsed;
     private String type;
     private String id;
     private double premiumAmount;
@@ -10,6 +11,7 @@ public class Policy {
 
     Policy(){
         this.isActive = true;
+        this.isLapsed = true;
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the type");
         this.type = sc.next();
