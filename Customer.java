@@ -69,19 +69,19 @@ public class Customer {
         policies.add(policy);
     }
 
-    protected void addClaim(Claim claim){
+    protected void addClaim(Claim claim) {
         claims.add(claim);
     }
 
-    protected void createNewClaim(){
+    protected void createNewClaim() {
         Scanner sc = new Scanner(System.in);
         String policyId = sc.next();
         for (Policy policy : policies) {
-            if(policy.getId().compareTo(policyId) != 0){
+            if (policy.getId().compareTo(policyId) != 0) {
                 System.out.println("Policy id not found");
-            }else{
+            } else {
                 Claim claim = new Claim(policyId);
-                Agent agent = new Agent();
+                Agent agent = new Agent("", "", "");
                 agent.addClaim(claim);
             }
         }
