@@ -19,6 +19,7 @@ public class Main {
         /*ArrayList<Customer> Cu = new ArrayList<Customer>();
         ArrayList<Agent> Ag = new ArrayList<Agent>();
         ArrayList<Adjuster> Ad = new ArrayList<Adjuster>();*/
+        
         preDefined(Db);
         InsuranceManagement Im=new InsuranceManagement();
         Im.mainFunction(Db);
