@@ -30,11 +30,11 @@ public class InsuranceManagement extends Database {
 
   static void agentPortalDisplay(Agent Ag) {
     System.out.print("\033[H\033[2J");
-    System.out.println(
-      "\t\tIIT INUSRANCE\n\n\tWelcome Agent " +
-      Ag.getName() +
-      "\n\tWhat do you want to do : \n\t\tCreate a new Claim\t\tPress 1\n\t\tCreate a new Policy\t\t\tPress 2\n\t\tUpdate a Policy\t\tPress 3\n\t\tLogout\t\t\t\tPress 4"
-    );
+    System.out.println( "\t\tIIT INUSRANCE\n\n\tWelcome Agent " +  Ag.getName() +"\n\tWhat do you want to do : \n\t\tCreate a new Claim\t\tPress 1\n\t\tCreate a new Policy\t\t\tPress 2\n\t\tUpdate a Policy\t\tPress 3\n\t\tLogout\t\t\t\tPress 4" );
+  }
+  static void agentPortalDisplay(Adjuster Ad) {
+    System.out.print("\033[H\033[2J");
+    System.out.println("\t\tIIT INUSRANCE\n\n\tWelcome Adjuster " +Ad.getName() +"\n\tWhat do you want to do : \n\t\tcheck a Claim\t\tPress 1\n\t\tExit\t\t\tPress 2\n");
   }
 
   private void Customer(
@@ -96,9 +96,8 @@ public class InsuranceManagement extends Database {
     }
   }
 
-  private void Agent( Database db,
-    int count
-  ) throws InterruptedException {
+  private void Agent( Database db,int count) 
+  throws InterruptedException {
     String name = sc.next();
     Agent agent = db.searchAgent(name);
     if (agent != null) {
@@ -141,11 +140,54 @@ public class InsuranceManagement extends Database {
         int t = 3;
         while (t > 0) {
           System.out.print("\033[H\033[2J");
-          System.out.print(
-            "\t\tIncorrect Agent Username entered many times\n\t\tThe Screen will return to Main Menu in \' " +
-            t +
-            " \' sec\n\t\t\t\t."
-          );
+          System.out.print( "\t\tIncorrect Agent Username entered many times\n\t\tThe Screen will return to Main Menu in \' " + t +  " \' sec\n\t\t\t\t." );
+          timeOut(300);
+          t--;
+        }
+        mainFunction(db);
+        return;
+      }
+    }
+  }
+  private void Adjuster( Database db,int count) 
+  throws InterruptedException {
+    String name = sc.next();
+    Adjuster adjuster = db.searchAdjuster(name);
+    if (adjuster != null) {
+      if (db.passwordVerification(adjuster, 3)) {
+        agentPortalDisplay(adjuster);
+        int t = sc.nextInt();
+        switch (t) {
+          case 1:
+            adjuster.processClaim();
+            break;
+          case 2:
+            mainFunction(db);
+            break;
+        }
+      } else {
+        mainFunction(db);
+        return;
+      }
+    } else {
+      if (count > 0) {
+        System.out.println(
+          "\t\tYou have entered an invalid Adjuster Username\n\n\t\tIf you want to exit\t\t\t\t\t\t Press 1\n\t\tIf you want to enter your Adjuster Username again\t\t press 2 "
+        );
+        int t = sc.nextInt();
+        if (t == 1) {
+          mainFunction(db);
+          return;
+        } else {
+          LoginDisplay("Adjuster");
+          Adjuster(db,count -= 1);
+          return;
+        }
+      } else {
+        int t = 3;
+        while (t > 0) {
+          System.out.print("\033[H\033[2J");
+          System.out.print( "\t\tIncorrect Adjuster Username entered many times\n\t\tThe Screen will return to Main Menu in \' " + t +  " \' sec\n\t\t\t\t." );
           timeOut(300);
           t--;
         }
@@ -168,5 +210,10 @@ public class InsuranceManagement extends Database {
       LoginDisplay("Agent");
       Agent(db,2);
     }
+    if (t == 3) {
+      LoginDisplay("Adjuster");
+      Adjuster(db,2);
+    }
+
   }
 }

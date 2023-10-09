@@ -63,7 +63,17 @@ public class Database extends Report {
     }
     return null;
   }
-
+  protected Adjuster searchAdjuster(String name) {
+    for (Adjuster adjuster : adjusters) {
+      if (adjuster.getUserName().compareTo(name) == 0) {
+        //System.out.println("hi");
+        return adjuster;
+        
+      }
+    }
+   // System.out.println("hi");
+    return null;
+  }
   protected boolean passwordVerification(Customer Cu, int count)
     throws InterruptedException {
     System.out.print("\t\tPlease Enter you Password : ");
@@ -143,6 +153,45 @@ public class Database extends Report {
     }
     return true;
   }
+  protected boolean passwordVerification(Adjuster Ad, int count)
+  throws InterruptedException {
+  System.out.print("\t\tPlease Enter you Password : ");
+
+  String password = sc.next();
+  if (!password.equals(Ad.getPassword())) {
+    if (count >= 1) {
+      System.out.print("\033[H\033[2J");
+      System.out.println("\t\tWelcome to IIT INUSRANCE");
+      System.out.println(
+        "\t\t!!!You have entered an incorrect password\n\tYou have " +
+        count +
+        " attempts after which your account will be blocked for 24 hours"
+      );
+      return passwordVerification(Ad, count -= 1);
+    } else {
+      // t=countdown time
+      int t = 4;
+      while (t > 0) {
+        System.out.print("\033[H\033[2J");
+        System.out.println(
+          "\t\tWelcome to IIT INUSRANCE\n\n\tAdjuster UserName : " +
+          Ad.getUserName()
+        );
+        System.out.print(
+          "\t\t!!!Incorrect Password Entered many times\n\t\tYour account is blocked for 24hrs\n\t\tPlease approach the Bank Manager for enguiry\n\t\tThe Screen will return to Main Menu in \' " +
+          t +
+          " \' sec\n\t\t\t\t."
+        );
+        timeOut(500);
+        t--;
+      }
+      Ad.setBlocked(true);
+      //InsuranceManagement.mainFunction();
+      return false;
+    }
+  }
+  return true;
+}
 
   protected Policy searchPolicy(String policyId) {
     for (Policy policy : policies) {

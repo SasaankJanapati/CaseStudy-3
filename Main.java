@@ -23,7 +23,9 @@ public class Main {
        agent.createNewPolicy(c3,Db);
        agent.createNewPolicy(c4,Db);
        agent.createNewPolicy(c5,Db);
-    }
+       Adjuster adjuster = new Adjuster("Ram","11223344","ra11","ram",Db);
+       Db.addAdjuster(adjuster);
+     }
 
 
     public static void main(String[] args) throws InterruptedException {

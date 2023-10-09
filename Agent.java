@@ -9,13 +9,7 @@ public class Agent extends Database {
   private String password;
   private boolean isBlocked = false;
 
-  Agent(
-    String name,
-    String id,
-    String userName,
-    String password,
-    Database database
-  ) {
+  Agent( String name, String id, String userName, String password, Database database ) {
     this.name = name;
     this.id = id;
     this.userName = userName;

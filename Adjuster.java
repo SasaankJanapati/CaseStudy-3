@@ -6,14 +6,25 @@ public class Adjuster extends Database {
   private String id;
   private String userName;
   private String password;
+  private boolean isBlocked = false;
+    public boolean isBlocked() {
+        return isBlocked;
+    }
 
-  Adjuster(
-    String name,
-    String id,
-    String userName,
-    String password,
-    Database database
-  ) {
+    public void setBlocked(boolean isBlocked) {
+        this.isBlocked = isBlocked;
+    }
+    public String getPassword() {
+      return password;
+    }
+    public String getUserName() {
+      return userName;
+    }
+    public String getName() {
+      return name;
+    }
+  Adjuster(String name,String id,String userName,String password,Database database)
+  {
     this.name = name;
     this.id = id;
     this.userName = userName;
