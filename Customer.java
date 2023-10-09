@@ -173,12 +173,12 @@ public class Customer {
     // exists(customerPortalDisplay takes us back to customer page)
     protected void displayClaims(Customer customer, Database database) throws InterruptedException {
         System.out.println("Your claims");
-        for (Claim claim : claims) {
+        for (Claim claim : this.claims) {
             System.out.println(claim.getId());
         }
-        if (claims.size() == 0) {
+        if (this.claims.size() == 0) {
             System.out.println("You have 0 Claims");
-            Management.customerPortalDisplay(customer, database);
+            InsuranceManagement.customerPortalDisplay(customer, database);
             return;
         }
         boolean isValid = false;
@@ -186,7 +186,7 @@ public class Customer {
             System.out.println("Choose a Claim Id");
             Scanner sc = new Scanner(System.in);
             String claimId = sc.next();
-            for (Claim claim : claims) {
+            for (Claim claim : this.claims) {
                 if (claim.getId().compareTo(claimId) == 0) {
                     claim.displayClaim();
                     isValid = true;
@@ -196,6 +196,8 @@ public class Customer {
                 System.out.println("Invalid Claim Id");
             }
         }
+        InsuranceManagement.customerPortalDisplay(customer, database);
+        return;
     }
 
 }
