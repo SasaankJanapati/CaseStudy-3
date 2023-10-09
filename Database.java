@@ -146,7 +146,7 @@ public class Database extends Report {
     }
     return true;
   }
-// This method is used to whether the given passward is correct or not for adjuster
+// This method is used to whether the given password is correct or not for adjuster
   protected boolean passwordVerification(Adjuster adjuster, int count)
       throws InterruptedException {
     System.out.print("\t\tPlease Enter you Password : ");
@@ -162,7 +162,7 @@ public class Database extends Report {
         int t = 4;
         while (t > 0) {
           System.out.print("\033[H\033[2J");
-          System.out.println("\t\tWelcome to IIT INUSRANCE\n\n\tAdjuster UserName : " +adjuster.getUserName());System.out.print(    "\t\t!!!Incorrect Password Entered many times\n\t\tYour account is blocked for 24hrs\n\t\tPlease approach the Bank Manager for enguiry\n\t\tThe Screen will return to Main Menu in \' "        +        t +        " \' sec\n\t\t\t\t.");
+          System.out.println("\t\tWelcome to IIT INUSRANCE\n\n\tAdjuster UserName : " +adjuster.getUserName());System.out.print(    "\t\t!!!Incorrect Password Entered many times\n\t\tYour account is blocked for 24hrs\n\t\tPlease approach the Agent/Manager for enguiry\n\t\tThe Screen will return to Main Menu in \' "        +        t +        " \' sec\n\t\t\t\t.");
           timeOut(500);
           t--;
         }
