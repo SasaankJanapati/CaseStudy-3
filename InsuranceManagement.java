@@ -26,7 +26,7 @@ public class InsuranceManagement extends Database{
 
     private void Customer(ArrayList<Customer> Cu,ArrayList<Agent> Ag,ArrayList<Adjuster> Ad,int count) throws InterruptedException{
         String s=sc.next();
-        Customer customer=Db.searchCustomer(s,Cu);
+        Customer customer=Db.searchCustomer(s);
         if(customer!=null){
             if(Db.passwordVerification(customer, 3)){
                 customerPortalDisplay(customer);
@@ -72,7 +72,7 @@ public class InsuranceManagement extends Database{
 
     private void Agent(ArrayList<Customer> Cu,ArrayList<Agent> Ag,ArrayList<Adjuster> Ad,int count) throws InterruptedException{
        String name=sc.next();
-        Agent agent=Db.searchAgent(name,Ag);
+        Agent agent=Db.searchAgent(name);
         if(agent!=null){
             if(Db.passwordVerification(agent, 3)){
                 agentPortalDisplay(agent);

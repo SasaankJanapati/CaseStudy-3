@@ -16,31 +16,31 @@ public class Database extends Report{
     private String fiancialSummary;
 
     protected void addPolicy(Policy policy){
-        policies.add(policy);
+        this.policies.add(policy);
     }
     protected void addCustomer(Customer customer){
-        customers.add(customer);
+        this.customers.add(customer);
     }
     protected void addClaim(Claim claim){
-        claims.add(claim);
+        this.claims.add(claim);
     }
     protected void addAdjuster(Adjuster adjuster){
-        adjusters.add(adjuster);
+        this.adjusters.add(adjuster);
     }
     protected void addAgent(Agent agent){
-        agents.add(agent);
+        this.agents.add(agent);
     }
     
-    protected Customer searchCustomer(String name,ArrayList<Customer> customers){
-        for (Customer customer : customers) {
+    protected Customer searchCustomer(String name){
+        for (Customer customer : this.customers) {
             if(customer.getUserName().compareTo(name) == 0){
                 return customer;
             }
         }
         return null;
     }
-    protected Agent searchAgent(String name,ArrayList<Agent> agents){
-        for (Agent agent : agents) {
+    protected Agent searchAgent(String name){
+        for (Agent agent : this.agents) {
             if(agent.getUserName().compareTo(name) == 0){
                 return agent;
             }
