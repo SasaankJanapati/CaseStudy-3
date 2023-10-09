@@ -178,7 +178,7 @@ public class Customer {
         }
         if (claims.size() == 0) {
             System.out.println("You have 0 Claims");
-            Management.customerPortalDisplay(customer, database);
+            InsuranceManagement.customerPortalDisplay(customer, database);
             return;
         }
         boolean isValid = false;

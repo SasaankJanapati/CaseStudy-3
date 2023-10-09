@@ -34,8 +34,17 @@ public class Main {
     ArrayList<Agent> agent = new ArrayList<Agent>();
     ArrayList<Adjuster> adjuster = new ArrayList<Adjuster>();
 
+<<<<<<< HEAD
     preDefined(database);
     InsuranceManagement insuranceManagement = new InsuranceManagement();
     insuranceManagement.mainFunction(database);
   }
+=======
+    public static void main(String[] args) throws InterruptedException {
+        Database Db=new Database();
+        preDefined(Db);
+        InsuranceManagement Im=new InsuranceManagement();
+        Im.mainFunction(Db);
+    }
+>>>>>>> 5023fe44cdce64362d24fd25bf99a677c3dd6d61
 }

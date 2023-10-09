@@ -1,6 +1,7 @@
 import java.util.*;
 
 public class Policy {
+//private attributes of a policy
     private boolean isActive;
     private String lapseDate;
     private String type;
@@ -8,7 +9,7 @@ public class Policy {
     private double premiumAmount;
     private double coverage;
     private double period;
-
+//A parameterized constructor to pre define some policies
     Policy(boolean isActive,String lapseDate,String type,double premiumAmount,double coverage,double period){
         this.isActive=isActive;
         this.lapseDate=lapseDate;
@@ -19,13 +20,12 @@ public class Policy {
         this.period=period;
         this.premiumAmount=premiumAmount;
     }
-
+//A non-parameterized constructor to create a new policy
     Policy(){
         this.isActive = true;
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the type");
         this.type = sc.next();
-        //System.out.println("Enter the id");
         this.id = UUID.randomUUID().toString().substring(0, 7);
         System.out.println("Enter the premiun amount");
         this.premiumAmount = sc.nextDouble();
@@ -34,7 +34,7 @@ public class Policy {
         System.out.println("Enter the period");
         this.period = sc.nextDouble();
     }
-
+//Getters and Setters
     protected String getId() {
         return id;
     }
@@ -56,6 +56,7 @@ public class Policy {
     public double getPremiumAmount() {
         return premiumAmount;
     }
+//The following method displays the policy
     protected void displayPolicy(){
         System.out.println("Policy Active : "+this.isActive);
         System.out.println("Policy Type : "+this.type);
