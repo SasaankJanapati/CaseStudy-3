@@ -30,10 +30,6 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
         Database Db=new Database();
-        ArrayList<Customer> Cu = new ArrayList<Customer>();
-        ArrayList<Agent> Ag = new ArrayList<Agent>();
-        ArrayList<Adjuster> Ad = new ArrayList<Adjuster>();
-        
         preDefined(Db);
         InsuranceManagement Im=new InsuranceManagement();
         Im.mainFunction(Db);
