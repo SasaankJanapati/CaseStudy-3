@@ -93,7 +93,8 @@ public class Customer {
         }
         return null;
     }
-    protected void displayPolicies(Customer Cu){
+    protected void displayPolicies(Customer Cu,Database database) throws InterruptedException{
+        InsuranceManagement Management=new InsuranceManagement();
         System.out.println("Your policies");
         for (Policy policy : policies) {
             System.out.println(policy.getId());
@@ -116,7 +117,7 @@ public class Customer {
         }
         System.out.print("\t\tPress 1 to go to main menu :");
         int t=sc.nextInt();
-        InsuranceManagement.customerPortalDisplay(Cu);
+        InsuranceManagement.customerPortalDisplay(Cu,database);
         return;
     }
     protected void displayClaims(){
@@ -140,9 +141,5 @@ public class Customer {
             }
         }
     }
-    public void preDefinedPolicy(){
-        
-    }
-    
-    
+       
 }
