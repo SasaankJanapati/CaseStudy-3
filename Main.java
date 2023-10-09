@@ -12,16 +12,15 @@ public class Main {
         Db.addCustomer(new Customer("Shivadarshan", "2234567899", "sh@gmaill.com","India", "sh11", "shivadarshan"));
         Db.addCustomer(new Customer("Sasaank", "1234767899", "sa@gmaill.com","India" ,"sa11", "sasaank"));
         
-        
     }
 
     public static void main(String[] args) throws InterruptedException {
         Database Db=new Database();
-        ArrayList<Customer> Cu = new ArrayList<Customer>();
+        /*ArrayList<Customer> Cu = new ArrayList<Customer>();
         ArrayList<Agent> Ag = new ArrayList<Agent>();
-        ArrayList<Adjuster> Ad = new ArrayList<Adjuster>();
+        ArrayList<Adjuster> Ad = new ArrayList<Adjuster>();*/
         preDefined(Db);
         InsuranceManagement Im=new InsuranceManagement();
-        Im.mainFunction(Cu,Ag,Ad);
+        Im.mainFunction(Db);
     }
 }

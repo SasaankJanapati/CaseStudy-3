@@ -2,7 +2,6 @@ import java.util.*;
 
 public class InsuranceManagement extends Database {
 
-  Database Db = new Database();
   static Scanner sc = new Scanner(System.in);
 
   //Initial Display
@@ -39,20 +38,17 @@ public class InsuranceManagement extends Database {
   }
 
   private void Customer(
-    ArrayList<Customer> Cu,
-    ArrayList<Agent> Ag,
-    ArrayList<Adjuster> Ad,
     int count,Database db
   ) throws InterruptedException {
     String s = sc.next();
-    Customer customer = Db.searchCustomer(s);
+    Customer customer = db.searchCustomer(s);
     if (customer != null) {
-      if (Db.passwordVerification(customer, 3)) {
+      if (db.passwordVerification(customer, 3)) {
         customerPortalDisplay(customer);
         int t = sc.nextInt();
         switch (t) {
           case 1:
-            Db.addClaim(customer.createNewClaim());
+            db.addClaim(customer.createNewClaim());
             break;
           case 2:
             customer.displayClaims();
@@ -61,11 +57,11 @@ public class InsuranceManagement extends Database {
             customer.displayPolicies();
             break;
           case 4:
-            mainFunction(Cu, Ag, Ad,db);
+            mainFunction(db);
             break;
         }
       } else {
-        mainFunction(Cu, Ag, Ad,db);
+        mainFunction(db);
         return;
       }
     } else {
@@ -75,11 +71,11 @@ public class InsuranceManagement extends Database {
         );
         int t = sc.nextInt();
         if (t == 1) {
-          mainFunction(Cu, Ag, Ad,db);
+          mainFunction(db);
           return;
         } else {
           LoginDisplay("Customer");
-          Customer(Cu, Ag, Ad, count -= 1,db);
+          Customer(count -= 1,db);
           return;
         }
       } else {
@@ -94,22 +90,19 @@ public class InsuranceManagement extends Database {
           timeOut(300);
           t--;
         }
-        mainFunction(Cu, Ag, Ad,db);
+        mainFunction(db);
         return;
       }
     }
   }
 
-  private void Agent(
-    ArrayList<Customer> Cu,
-    ArrayList<Agent> Ag,
-    ArrayList<Adjuster> Ad, Database db,
+  private void Agent( Database db,
     int count
   ) throws InterruptedException {
     String name = sc.next();
-    Agent agent = Db.searchAgent(name);
+    Agent agent = db.searchAgent(name);
     if (agent != null) {
-      if (Db.passwordVerification(agent, 3)) {
+      if (db.passwordVerification(agent, 3)) {
         agentPortalDisplay(agent);
         int t = sc.nextInt();
         switch (t) {
@@ -123,11 +116,11 @@ public class InsuranceManagement extends Database {
             agent.updatePolicy();
             break;
           case 4:
-            mainFunction(Cu, Ag, Ad,db);
+            mainFunction(db);
             break;
         }
       } else {
-        mainFunction(Cu, Ag, Ad,db);
+        mainFunction(db);
         return;
       }
     } else {
@@ -137,11 +130,11 @@ public class InsuranceManagement extends Database {
         );
         int t = sc.nextInt();
         if (t == 1) {
-          mainFunction(Cu, Ag, Ad,db);
+          mainFunction(db);
           return;
         } else {
           LoginDisplay("Agent");
-          Agent(Cu, Ag, Ad, db,count -= 1);
+          Agent(db,count -= 1);
           return;
         }
       } else {
@@ -156,27 +149,24 @@ public class InsuranceManagement extends Database {
           timeOut(300);
           t--;
         }
-        mainFunction(Cu, Ag, Ad,db);
+        mainFunction(db);
         return;
       }
     }
   }
 
   public void mainFunction(
-    ArrayList<Customer> Cu,
-    ArrayList<Agent> Ag,
-    ArrayList<Adjuster> Ad,
     Database db
   ) throws InterruptedException {
     welcomeDisplay();
     int t = sc.nextInt();
     if (t == 1) {
       LoginDisplay("Customer");
-      Customer(Cu, Ag, Ad, 2,db);
+      Customer( 2,db);
     }
     if (t == 2) {
       LoginDisplay("Agent");
-      Agent(Cu, Ag, Ad, db,2);
+      Agent(db,2);
     }
   }
 }
