@@ -20,6 +20,8 @@ public class Customer {
     private ArrayList<Policy> policies;
     private ArrayList<Claim> claims;
     Customer(String name, String phoneNumber, String email,String address, String userName, String password) {
+        
+        
         this.setName(name);
         this.setPhoneNumber(phoneNumber);
         this.email = email;
@@ -72,8 +74,10 @@ public class Customer {
         System.out.println("Enter your password");
         this.password = sc.next();
     }*/
+    
     protected void addPolicy(Policy policy) {
-        policies.add(policy);
+        Policy P=new Policy(true,"1 Jan 2025","Car",100000,10000,5);
+        this.policies.add(P);
     }
 
     protected void addClaim(Claim claim) {
@@ -81,8 +85,8 @@ public class Customer {
     }
 
     protected void createNewClaim() {
-        Scanner sc = new Scanner(System.in);
-        String policyId = sc.next();
+        System.out.println("Please Enter your policy ID");
+        String policyId = sc.nextLine();
         for (Policy policy : policies) {
             if (policy.getId().compareTo(policyId) != 0) {
                 System.out.println("Policy id not found");
@@ -110,6 +114,7 @@ public class Customer {
             }
             if(!isValid){
                 System.out.println("Invalid Policy Id");
+                System.out.println("");
             }
         }
     }
@@ -134,6 +139,9 @@ public class Customer {
             }
         }
     }
-
+    public void preDefinedPolicy(){
+        
+    }
+    
     
 }

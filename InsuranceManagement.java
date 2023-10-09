@@ -26,9 +26,9 @@ public class InsuranceManagement extends Database{
 
     private void Customer(ArrayList<Customer> Cu,ArrayList<Agent> Ag,ArrayList<Adjuster> Ad,int count) throws InterruptedException{
         String s=sc.next();
-        Customer customer=Db.searchCustomer(s,Cu);
+        Customer customer=this.searchCustomer(s,Cu);
         if(customer!=null){
-            if(Db.passwordVerification(customer, 3)){
+            if(this.passwordVerification(customer, 3)){
                 customerPortalDisplay(customer);
                 int t=sc.nextInt();
                 switch(t){
@@ -72,9 +72,9 @@ public class InsuranceManagement extends Database{
 
     private void Agent(ArrayList<Customer> Cu,ArrayList<Agent> Ag,ArrayList<Adjuster> Ad,int count) throws InterruptedException{
        String name=sc.next();
-        Agent agent=Db.searchAgent(name,Ag);
+        Agent agent=searchAgent(name,Ag);
         if(agent!=null){
-            if(Db.passwordVerification(agent, 3)){
+            if(this.passwordVerification(agent, 3)){
                 agentPortalDisplay(agent);
                 int t=sc.nextInt();
                 switch(t){
