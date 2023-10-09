@@ -3,7 +3,9 @@ import java.util.*;
 /*
  * Inheritance is used by the InsuranceManagement class to inherit the methods of Database.
  * This class connects all the other importnt classes like Agent,customer and adjusters.
- */
+ * In this class we implemented encapsulation by using protected methods,variables and private methods,variables
+ *  Here we are uisng exceprtion handeling to make to make some dilays in the output generation
+*/
 
 public class InsuranceManagement extends Database {
 
