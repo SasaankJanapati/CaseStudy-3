@@ -204,28 +204,28 @@ public class InsuranceManagement extends Database {
   static void welcomeDisplay() {
     // System.out.print("\033[H\033[2J");
     System.out.println(
-        "\t\tWelcome to IIT INUSRANCE\n\n\tThorugh which account type you want to enter : \n\t\tCustomer \tPress 1\n\t\tAgent\t\tPress 2\n\t\tAdjuster\tPress 3\n\t\tReport\tPress 4");
+        "\t\tWelcome to IIT INSURANCE\n\n\tThorugh which account type you want to enter : \n\t\tCustomer \tPress 1\n\t\tAgent\t\tPress 2\n\t\tAdjuster\tPress 3\n\t\tReport\t\tPress 4");
   }
   
   //Login Display made static so that it can be called without object Creation
   static void loginDisplay(String name) {
-    System.out.print("\t\tWelcome to IIT INUSRANCE\n\n\t\tEnter your " + name + " Username : ");
+    System.out.print("\t\tWelcome to IIT INSURANCE\n\n\t\tEnter your " + name + " Username : ");
   }
   
   //Customer Portal made static so that it can be called without object Creation
   static void customerPortalDisplay(Customer customer, Database database) throws InterruptedException {
-    System.out.println("\t\tIIT INUSRANCE\n\n\tWelcome " + customer.getName()+ "\n\tWhat do you want to do : \n\t\tDisplay Policies\t\tPress 1\n\t\tDisplay Claims\t\t\tPress 2\n\t\tCreate a new Claim\t\tPress 3\n\t\tLogout\t\t\t\tPress 4");
+    System.out.println("\t\tIIT INSURANCE\n\n\tWelcome " + customer.getName()+ "\n\tWhat do you want to do : \n\t\tDisplay Policies\t\tPress 1\n\t\tDisplay Claims\t\t\tPress 2\n\t\tCreate a new Claim\t\tPress 3\n\t\tLogout\t\t\t\tPress 4");
     Management.customerMainMenu(customer, 2, database);
   }
 
   //Agent Portal made static so that it can be called without object Creation
   static void agentPortalDisplay(Agent agent) {
-  System.out.println("\t\tIIT INUSRANCE\n\n\tWelcome Agent " + agent.getName()+ "\n\tWhat do you want to do : \n\t\tCreate a new Policy\t\tPress 1\n\t\tUpdate a Policy\t\t\tPress 2\n\t\tLogout\t\t\t\tPress 3");
+  System.out.println("\t\tIIT INSURANCE\n\n\tWelcome Agent " + agent.getName()+ "\n\tWhat do you want to do : \n\t\tCreate a new Policy\t\tPress 1\n\t\tUpdate a Policy\t\t\tPress 2\n\t\tLogout\t\t\t\tPress 3");
   }
 
   //Adjuster Portal made static so that it can be called without object Creation
   static void adjusterPortalDisplay(Adjuster adjuster) {
-    System.out.println("\t\tIIT INUSRANCE\n\n\tWelcome Adjuster " + adjuster.getName()+ "\n\tWhat do you want to do : \n\t\tProcess Claims\t\t\tPress 1\n\t\tLogout\t\t\t\tPress 2");
+    System.out.println("\t\tIIT INSURANCE\n\n\tWelcome Adjuster " + adjuster.getName()+ "\n\tWhat do you want to do : \n\t\tProcess Claims\t\t\tPress 1\n\t\tLogout\t\t\t\tPress 2");
   }
 
   //This is the Main Fuction which is called in the Main Class
