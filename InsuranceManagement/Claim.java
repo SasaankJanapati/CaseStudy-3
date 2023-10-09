@@ -1,3 +1,4 @@
+package InsuranceManagement;
 import java.util.*;
 /*
  * Claim is implemented as a class 

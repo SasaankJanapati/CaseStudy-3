@@ -1,3 +1,4 @@
+package InsuranceManagement;
 import java.util.*;
 // This is tje database class which contains all thge data realted to costumers,agents,adjusters,policies,financial statementse etc.
 // In this class we implemented encapsulation by using protected methods,variables and private methods,variables
@@ -22,7 +23,7 @@ public class Database extends Report {
   private ArrayList<Claim> claims;
   private String financialSummary;
 // This is a constructor which is used to initialize all the arraylists and variables .
-  Database() {
+public Database() {
     this.adjusters = new ArrayList<Adjuster>();
     this.agents = new ArrayList<Agent>();
     this.customers = new ArrayList<Customer>();
@@ -35,7 +36,7 @@ public class Database extends Report {
     policies.add(policy);
   }
 // This method is used to add customers to customers array list.
-  protected void addCustomer(Customer customer) {
+  public void addCustomer(Customer customer) {
     customers.add(customer);
   }
 // This method is used to add claim to claims array list.
@@ -43,11 +44,11 @@ public class Database extends Report {
     claims.add(claim);
   }
 // This method is used to add adjusters to adjuster array list.
-  protected void addAdjuster(Adjuster adjuster) {
+  public void addAdjuster(Adjuster adjuster) {
     adjusters.add(adjuster);
   }
 // This method is used to add agents to agent  array list.
-  protected void addAgent(Agent agent) {
+  public void addAgent(Agent agent) {
     agents.add(agent);
   }
 // This method is used to search whether the given customer user name is in the existing customers

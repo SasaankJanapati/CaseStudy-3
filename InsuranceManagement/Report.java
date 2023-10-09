@@ -1,3 +1,4 @@
+package InsuranceManagement;
 //Report is an abstract class which is extended by the Database class
 /*
 It has three main methods

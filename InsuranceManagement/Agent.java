@@ -1,4 +1,6 @@
+package InsuranceManagement;
 import java.util.Scanner;
+
 /*
  * Agent is implemented as a class, extends the database class so the 
  * class can use all the database methods to modify the database 
@@ -35,7 +37,7 @@ static Scanner sc=new Scanner(System.in);
    * This constructor will be used by the company , in order to simulate agents,
    * We are creating agents to show functionality
    */
-  Agent( String name, String id, String userName, String password, Database database ) {
+  public Agent( String name, String id, String userName, String password, Database database ) {
     this.name = name;
     this.id = id;
     this.userName = userName;
@@ -95,7 +97,7 @@ static Scanner sc=new Scanner(System.in);
   }
 
   // Overloaded method 2
-  protected void createNewPolicy(Customer c1,Database database){
+  public void createNewPolicy(Customer c1,Database database){
     Policy policy =new Policy(true,"1 Jan 2050","car",1000000,10000,10);
     c1.addPolicy(policy);
     database.addPolicy(policy);

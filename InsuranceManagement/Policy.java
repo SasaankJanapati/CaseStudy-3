@@ -1,3 +1,4 @@
+package InsuranceManagement;
 import java.util.*;
 
 public class Policy {

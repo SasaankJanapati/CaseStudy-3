@@ -1,3 +1,4 @@
+package InsuranceManagement;
 import java.util.*;
 
 public class Customer {
@@ -24,7 +25,7 @@ public class Customer {
     private ArrayList<Claim> claims;
 
     // parametrised constructor for customer
-    Customer(String name, String phoneNumber, String email, String address, String userName, String password) {
+    public Customer(String name, String phoneNumber, String email, String address, String userName, String password) {
         this.policies = new ArrayList<Policy>();
         this.claims = new ArrayList<Claim>();
         this.setName(name);
