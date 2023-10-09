@@ -25,7 +25,7 @@ public class Policy {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the type");
         this.type = sc.next();
-        System.out.println("Enter the id");
+        //System.out.println("Enter the id");
         this.id = UUID.randomUUID().toString().substring(0, 7);
         System.out.println("Enter the premiun amount");
         this.premiumAmount = sc.nextDouble();

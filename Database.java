@@ -66,7 +66,6 @@ public class Database extends Report {
   protected Adjuster searchAdjuster(String name) {
     for (Adjuster adjuster : adjusters) {
       if (adjuster.getUserName().compareTo(name) == 0) {
-        //System.out.println("hi");
         return adjuster;
         
       }

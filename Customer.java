@@ -59,17 +59,19 @@ public class Customer {
     }
 
     Customer(){
-        System.out.println("Enter your name");
+        this.policies=new ArrayList<Policy>();
+        this.claims = new ArrayList<Claim>();
+        System.out.println("Enter the Customer name");
         this.name = sc.next();
-        System.out.println("Enter your phone number");
+        System.out.println("Enter the Customer phone number");
         this.phoneNumber = sc.next();
-        System.out.println("Enter your email");
+        System.out.println("Enter the Customer email id");
         this.email = sc.next();
-        System.out.println("Enter your address");
+        System.out.println("Enter the Customer address");
         this.address = sc.next();
-        System.out.println("Enter your user name");
+        System.out.println("Enter the Customer user name");
         this.userName = sc.next();
-        System.out.println("Enter your password");
+        System.out.println("Enter the Customer password");
         this.password = sc.next();
     }
     protected void addPolicy(Policy policy) {
@@ -80,12 +82,13 @@ public class Customer {
         claims.add(claim);
     }
 
-    protected Claim createNewClaim() {
-        System.out.println("Please Enter your policy ID");
+    protected Claim createNewClaim(Customer Cu,Database database)  throws InterruptedException{
+        displayPoliciesId(Cu,database);
+        System.out.print("\n\t\tPlease Enter your policy ID : ");
         String policyId = sc.nextLine();
         for (Policy policy : policies) {
             if (policy.getId().compareTo(policyId) != 0) {
-                System.out.println("Policy id not found");
+                System.out.println("\n\t\t! Policy id not found");
             } else {
                 Claim claim = new Claim(policyId);
                 return claim;
@@ -93,32 +96,47 @@ public class Customer {
         }
         return null;
     }
+    protected void displayPoliciesId(Customer Cu,Database database) throws InterruptedException{
+        InsuranceManagement Management=new InsuranceManagement();
+        System.out.print("\n\t\tYour policies : ");
+        for (Policy policy : policies) {
+            System.out.println("\t\t"+policy.getId());
+        }
+        return;
+    }
     protected void displayPolicies(Customer Cu,Database database) throws InterruptedException{
         InsuranceManagement Management=new InsuranceManagement();
-        System.out.println("Your policies");
+        System.out.print("\n\t\tYour policies : ");
         for (Policy policy : policies) {
-            System.out.println(policy.getId());
+            System.out.println("\t\t"+policy.getId());
         }
-        boolean isValid = false;
-        while(!isValid){
-            System.out.println("Choose a Policy Id");
-            Scanner sc = new Scanner(System.in);
-            String policyId = sc.next();
-            for (Policy policy : policies) {
-                if(policy.getId().compareTo(policyId) == 0){
-                    policy.displayPolicy();
-                    isValid = true;
+        System.out.println("Do you want to see the details of your policies\tpress 1\nTo go to Main Menu\t\tpress 2");
+        int t=sc.nextInt();
+        if(t==1){
+            boolean isValid = false;
+            while(!isValid){
+                System.out.println("Choose a Policy Id");
+                Scanner sc = new Scanner(System.in);
+                String policyId = sc.next();
+                for (Policy policy : policies) {
+                    if(policy.getId().compareTo(policyId) == 0){
+                        policy.displayPolicy();
+                        isValid = true;
+                    }
+                }
+                if(!isValid){
+                    System.out.println("Invalid Policy Id");
+                    System.out.println("");
                 }
             }
-            if(!isValid){
-                System.out.println("Invalid Policy Id");
-                System.out.println("");
-            }
+            System.out.print("\t\tPress 1 to go to main menu :");
+            int x=sc.nextInt();
+            InsuranceManagement.customerPortalDisplay(Cu,database);
+            return;
+        }else{
+            InsuranceManagement.customerPortalDisplay(Cu,database);
+            return;
         }
-        System.out.print("\t\tPress 1 to go to main menu :");
-        int t=sc.nextInt();
-        InsuranceManagement.customerPortalDisplay(Cu,database);
-        return;
     }
     protected void displayClaims(){
         System.out.println("Your claims");

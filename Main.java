@@ -37,6 +37,5 @@ public class Main {
         preDefined(Db);
         InsuranceManagement Im=new InsuranceManagement();
         Im.mainFunction(Db);
-        //System.out.println(Cu.ge);
     }
 }
