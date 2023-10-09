@@ -1,3 +1,17 @@
+/*
+ * Pre Defined : Customers username : ak11        password : akilesh
+ *                         username : mo11        password : mokshith
+ *                         username : so11        password : sonith
+ *                         username : sh11        password : shivadarshan
+ * 
+ * Pre Defined : Agents    username : agent       password : agent
+ * 
+ * Pre Defined : Adjusters username : ra11        password : ram
+ * 
+ * 
+ */
+
+
 import java.util.*;
 
 public class Main {

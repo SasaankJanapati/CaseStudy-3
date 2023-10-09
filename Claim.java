@@ -18,9 +18,9 @@ public class Claim {
         Scanner sc = new Scanner(System.in);
         this.id = UUID.randomUUID().toString().substring(0, 7);
         System.out.println("Enter the Date of incident: ");
-        this.dateOfIncident = sc.next();
+        this.dateOfIncident = sc.nextLine();
         System.out.println("Give a brief description: ");
-        this.description = sc.next();
+        this.description = sc.nextLine();
         System.out.println("Enter requested claim amount: ");
         this.claimAmount = sc.nextDouble();
         this.status = "pending";
