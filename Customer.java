@@ -140,9 +140,5 @@ public class Customer {
             }
         }
     }
-    public void preDefinedPolicy(){
-        
-    }
-    
-    
+       
 }

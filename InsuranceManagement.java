@@ -14,32 +14,20 @@ public class InsuranceManagement extends Database {
 
   static void LoginDisplay(String name) {
     System.out.print("\033[H\033[2J");
-    System.out.print(
-      "\t\tWelcome to IIT INUSRANCE\n\n\t\tEnter your " + name + " Username : "
-    );
+    System.out.print("\t\tWelcome to IIT INUSRANCE\n\n\t\tEnter your " + name + " Username : ");
   }
 
   static void customerPortalDisplay(Customer Cu) {
     System.out.print("\033[H\033[2J");
-    System.out.println(
-      "\t\tIIT INUSRANCE\n\n\tWelcome " +
-      Cu.getName() +
-      "\n\tWhat do you want to do : \n\t\tCreate a new Claim\t\tPress 1\n\t\tDisplay Claims\t\t\tPress 2\n\t\tDisplay Policies\t\tPress 3\n\t\tLogout\t\t\t\tPress 4"
-    );
+    System.out.println("\t\tIIT INUSRANCE\n\n\tWelcome " +Cu.getName() +"\n\tWhat do you want to do : \n\t\tCreate a new Claim\t\tPress 1\n\t\tDisplay Claims\t\t\tPress 2\n\t\tDisplay Policies\t\tPress 3\n\t\tLogout\t\t\t\tPress 4");
   }
 
   static void agentPortalDisplay(Agent Ag) {
     System.out.print("\033[H\033[2J");
-    System.out.println(
-      "\t\tIIT INUSRANCE\n\n\tWelcome Agent " +
-      Ag.getName() +
-      "\n\tWhat do you want to do : \n\t\tCreate a new Claim\t\tPress 1\n\t\tCreate a new Policy\t\t\tPress 2\n\t\tUpdate a Policy\t\tPress 3\n\t\tLogout\t\t\t\tPress 4"
-    );
+    System.out.println("\t\tIIT INUSRANCE\n\n\tWelcome Agent " +Ag.getName() +"\n\tWhat do you want to do : \n\t\tCreate a new Claim\t\tPress 1\n\t\tCreate a new Policy\t\t\tPress 2\n\t\tUpdate a Policy\t\tPress 3\n\t\tLogout\t\t\t\tPress 4");
   }
 
-  private void Customer(
-    int count,Database db
-  ) throws InterruptedException {
+  private void Customer(int count,Database db) throws InterruptedException {
     String s = sc.next();
     Customer customer = db.searchCustomer(s);
     if (customer != null) {
@@ -66,9 +54,7 @@ public class InsuranceManagement extends Database {
       }
     } else {
       if (count > 0) {
-        System.out.println(
-          "\t\tYou have entered an invalid Customer Username\n\n\t\tIf you want to exit\t\t\t\t\t\t Press 1\n\t\tIf you want to enter your Customer Username again\t\t press 2 "
-        );
+        System.out.println("\t\tYou have entered an invalid Customer Username\n\n\t\tIf you want to exit\t\t\t\t\t\t Press 1\n\t\tIf you want to enter your Customer Username again\t\t press 2 ");
         int t = sc.nextInt();
         if (t == 1) {
           mainFunction(db);
@@ -82,11 +68,7 @@ public class InsuranceManagement extends Database {
         int t = 3;
         while (t > 0) {
           System.out.print("\033[H\033[2J");
-          System.out.print(
-            "\t\tIncorrect Customer Username entered many times\n\t\tThe Screen will return to Main Menu in \' " +
-            t +
-            " \' sec\n\t\t\t\t."
-          );
+          System.out.print("\t\tIncorrect Customer Username entered many times\n\t\tThe Screen will return to Main Menu in \' " +t +" \' sec\n\t\t\t\t.");
           timeOut(300);
           t--;
         }
@@ -96,9 +78,7 @@ public class InsuranceManagement extends Database {
     }
   }
 
-  private void Agent( Database db,
-    int count
-  ) throws InterruptedException {
+  private void Agent( Database db,int count) throws InterruptedException {
     String name = sc.next();
     Agent agent = db.searchAgent(name);
     if (agent != null) {
@@ -125,9 +105,7 @@ public class InsuranceManagement extends Database {
       }
     } else {
       if (count > 0) {
-        System.out.println(
-          "\t\tYou have entered an invalid Agent Username\n\n\t\tIf you want to exit\t\t\t\t\t\t Press 1\n\t\tIf you want to enter your Customer Username again\t\t press 2 "
-        );
+        System.out.println("\t\tYou have entered an invalid Agent Username\n\n\t\tIf you want to exit\t\t\t\t\t\t Press 1\n\t\tIf you want to enter your Customer Username again\t\t press 2 ");
         int t = sc.nextInt();
         if (t == 1) {
           mainFunction(db);
@@ -141,11 +119,7 @@ public class InsuranceManagement extends Database {
         int t = 3;
         while (t > 0) {
           System.out.print("\033[H\033[2J");
-          System.out.print(
-            "\t\tIncorrect Agent Username entered many times\n\t\tThe Screen will return to Main Menu in \' " +
-            t +
-            " \' sec\n\t\t\t\t."
-          );
+          System.out.print("\t\tIncorrect Agent Username entered many times\n\t\tThe Screen will return to Main Menu in \' " +t +" \' sec\n\t\t\t\t.");
           timeOut(300);
           t--;
         }
@@ -155,9 +129,7 @@ public class InsuranceManagement extends Database {
     }
   }
 
-  public void mainFunction(
-    Database db
-  ) throws InterruptedException {
+  public void mainFunction(Database db) throws InterruptedException {
     welcomeDisplay();
     int t = sc.nextInt();
     if (t == 1) {
