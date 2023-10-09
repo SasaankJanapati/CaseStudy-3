@@ -81,7 +81,7 @@ public class Customer {
         claims.add(claim);
     }
 
-    protected void createNewClaim() {
+    protected Claim createNewClaim() {
         System.out.println("Please Enter your policy ID");
         String policyId = sc.nextLine();
         for (Policy policy : policies) {
@@ -89,9 +89,10 @@ public class Customer {
                 System.out.println("Policy id not found");
             } else {
                 Claim claim = new Claim(policyId);
-                new Agent(null,null,null,null,null).addClaim(claim);
+                return claim;
             }
         }
+        return null;
     }
     protected void displayPolicies(){
         System.out.println("Your policies");
