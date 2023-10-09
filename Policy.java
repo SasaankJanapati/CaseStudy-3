@@ -9,7 +9,18 @@ public class Policy {
     private double coverage;
     private double period;
 
-    Policy() {
+    Policy(boolean isActive,String lapseDate,String type,double premiumAmount,double coverage,double period){
+        this.isActive=isActive;
+        this.lapseDate=lapseDate;
+        this.type=type;
+        this.id = UUID.randomUUID().toString().substring(0, 7);
+        this.premiumAmount=premiumAmount;
+        this.coverage=coverage;
+        this.period=period;
+        this.premiumAmount=premiumAmount;
+    }
+
+    Policy(){
         this.isActive = true;
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the type");

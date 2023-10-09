@@ -48,8 +48,7 @@ public class Database extends Report {
   }
 
   protected Customer searchCustomer(
-    String name,
-    ArrayList<Customer> customers
+    String name
   ) {
     for (Customer customer : customers) {
       if (customer.getUserName().compareTo(name) == 0) {
