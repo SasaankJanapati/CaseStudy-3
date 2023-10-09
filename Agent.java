@@ -9,12 +9,18 @@ public class Agent extends Database {
   private String password;
   private boolean isBlocked = false;
 
-  Agent(String name, String id, String userName, String password) {
+  Agent(
+    String name,
+    String id,
+    String userName,
+    String password,
+    Database database
+  ) {
     this.name = name;
     this.id = id;
     this.userName = userName;
     this.password = password;
-    this.addAgent(this);
+    database.addAgent(this);
   }
 
   public String getName() {
@@ -49,22 +55,22 @@ public class Agent extends Database {
     this.userName = userName;
   }
 
-  protected void createNewPolicy() {
+  protected void createNewPolicy(Database database) {
     Customer customer = new Customer();
     Policy policy = new Policy();
     customer.addPolicy(policy);
     this.addPolicy(policy);
-    this.addCustomer(customer);
+    database.addCustomer(customer);
   }
 
-  protected void createNewPolicy(String name) {
+  protected void createNewPolicy(String name, Database database) {
     Customer customer = this.searchCustomer(name);
     if (customer == null) {
       System.out.println("Customer not found");
     } else {
       Policy policy = new Policy();
       customer.addPolicy(policy);
-      this.addPolicy(policy);
+      database.addPolicy(policy);
     }
   }
 
