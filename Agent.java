@@ -103,8 +103,9 @@ static Scanner sc=new Scanner(System.in);
               " paid " +
               policy.getPremiumAmount()
             );
+          sc.nextLine();
           System.out.println("Enter new Lapse Date :");
-          String newLapseDate = sc.next();
+          String newLapseDate = sc.nextLine();
           policy.setLapseDate(newLapseDate);
           validChoice = true;
         } else if (ans.compareTo("n") == 0) {

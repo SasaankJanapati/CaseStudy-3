@@ -1,5 +1,9 @@
 import java.util.*;
 
+/*
+ * Inheritance is used by 
+ */
+
 public class InsuranceManagement extends Database {
   static InsuranceManagement Management = new InsuranceManagement();
   static Scanner sc = new Scanner(System.in);
