@@ -2,7 +2,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Agent extends Database {
-
+static Scanner sc=new Scanner(System.in);
+  static InsuranceManagement Management = new InsuranceManagement();
   private String name;
   private String id;
   private String userName;
@@ -81,12 +82,12 @@ public class Agent extends Database {
     database.addClaim(claim);
   }
 
-  protected void updatePolicy() {
-    this.displayPolicyIdWithLapseDate();
+  protected void updatePolicy(Database db,Agent Ag) throws InterruptedException {
+    db.displayPolicyIdWithLapseDate();
     System.out.println("Select Policy Id to update:");
     Scanner sc = new Scanner(System.in);
     String policyId = sc.next();
-    Policy policy = this.searchPolicy(policyId);
+    Policy policy = db.searchPolicy(policyId);
     if (policy == null) {
       System.out.println("Policy does not exist");
     } else {
@@ -114,5 +115,10 @@ public class Agent extends Database {
         }
       }
     }
+    System.out.println("Press 1 to go to Main Menu");
+    int a=sc.nextInt();
+    Management.agentPortalDisplay(Ag);
+    Management.agentMainMenu(Ag,3,db);
+    return;
   }
 }

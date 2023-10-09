@@ -6,23 +6,23 @@ static InsuranceManagement Management=new InsuranceManagement();
 
   //Initial Display
   static void welcomeDisplay() {
-    System.out.print("\033[H\033[2J");
+    //System.out.print("\033[H\033[2J");
     System.out.println(
       "\t\tWelcome to IIT INUSRANCE\n\n\tThorugh which account type you want to enter : \n\t\tCustomer \tPress 1\n\t\tAgent\t\tPress 2\n\t\tAdjuster\tPress 3"
     );}
   static void LoginDisplay(String name) {
-    System.out.print("\033[H\033[2J");
+    //System.out.print("\033[H\033[2J");
     System.out.print("\t\tWelcome to IIT INUSRANCE\n\n\t\tEnter your " + name + " Username : ");}
   static void customerPortalDisplay(Customer Cu,Database database) throws InterruptedException {
-    System.out.print("\033[H\033[2J");
+    //System.out.print("\033[H\033[2J");
     System.out.println("\t\tIIT INUSRANCE\n\n\tWelcome " +Cu.getName() +"\n\tWhat do you want to do : \n\t\tDisplay Policies\t\tPress 1\n\t\tDisplay Claims\t\t\tPress 2\n\t\tCreate a new Claim\t\tPress 3\n\t\tLogout\t\t\t\tPress 4");
     customerMainMenu(Cu,2,database);}
   static void agentPortalDisplay(Agent Ag) {
-    System.out.print("\033[H\033[2J");
-    System.out.println("\t\tIIT INUSRANCE\n\n\tWelcome Agent " +Ag.getName() +"\n\tWhat do you want to do : \n\t\tCreate a new Policy\t\tPress 2\n\t\tUpdate a Policy\t\t\tPress 3\n\t\tLogout\t\t\t\tPress 4");
+    //System.out.print("\033[H\033[2J");
+    System.out.println("\t\tIIT INUSRANCE\n\n\tWelcome Agent " +Ag.getName() +"\n\tWhat do you want to do : \n\t\tCreate a new Policy\t\tPress 1\n\t\tUpdate a Policy\t\t\tPress 2\n\t\tLogout\t\t\t\tPress 3");
   }
   static void adjusterPortalDisplay(Adjuster adjuster) {
-    System.out.print("\033[H\033[2J");
+    //System.out.print("\033[H\033[2J");
     System.out.println("\t\tIIT INUSRANCE\n\n\tWelcome Adjuster " +adjuster.getName() +"\n\tWhat do you want to do : \n\t\tProcess Claims\t\t\tPress 1\n\t\tLogout\t\t\t\tPress 2");
   }
   
@@ -36,10 +36,13 @@ static InsuranceManagement Management=new InsuranceManagement();
         customer.displayPolicies(customer,db);
         break;
       case 2:
-        customer.displayClaims();
+        customer.displayClaims(customer,db);
         break;
       case 3:
         db.addClaim(customer.createNewClaim(customer,db));
+        System.out.println("Your claim has been created\n\t\tPress 1 to go to main menu");
+        t=sc.nextInt();
+        customerPortalDisplay(customer,db);
         break;
       case 4:
         Management.mainFunction(db);
@@ -47,28 +50,31 @@ static InsuranceManagement Management=new InsuranceManagement();
     }
     return;
   }
-  private static void agentMainMenu(Agent agent,int count,Database db) throws InterruptedException{
+protected static void agentMainMenu(Agent agent,int count,Database db) throws InterruptedException{
     int t = sc.nextInt();
     switch (t) {
-      case 2:
+      case 1:
       System.out.println("\n\t If you want to creat a new policy for an exisiting customer\tPress 1\n\tIf Want to create a new customer\t\tPress 2");
       t=sc.nextInt();
       if(t==2){
         agent.createNewPolicy(db);  //For a new Customer
+        System.out.println("New Customer crated and a policy is created");
+        agentPortalDisplay(agent);
+        agentMainMenu(agent,count,db);
         break;
       }else{
         System.out.print("\t\tEnter the Customer Name :");
         String name=sc.next();
         agent.createNewPolicy(name,db);
-        System.out.println("A New Policy has been created for cusomter : "+name);
+        //System.out.println("A New Policy has been created for cusomter : "+name);
         agentPortalDisplay(agent);
         agentMainMenu(agent,count,db);
         break;
       }
-      case 3:
-        agent.updatePolicy();
+      case 2:
+        agent.updatePolicy(db,agent);
         break;
-      case 4:
+      case 3:
        Management.mainFunction(db);
         break;
     }
@@ -152,28 +158,35 @@ static InsuranceManagement Management=new InsuranceManagement();
     }
   }
 
-  private void Adjuster( Database db,int count) throws InterruptedException {
-    String name = sc.next();
-    Adjuster adjuster = db.searchAdjuster(name);
-    if (adjuster != null) {
-      if (db.passwordVerification(adjuster, 3)) {
-        adjusterPortalDisplay(adjuster);
-        int t = sc.nextInt();
+  protected void adjusterMainMenu(Adjuster adjuster,int count,Database db) throws InterruptedException{
+    int t = sc.nextInt();
         switch (t) {
           case 1:
-            adjuster.processClaim();
+            adjuster.processClaim(db);
+            adjusterPortalDisplay(adjuster);
+            Adjuster(db,count);
             break;
           case 2:
             mainFunction(db);
             break;
         }
+      return;
+  }
+  protected void Adjuster( Database db,int count) throws InterruptedException {
+    String name = sc.next();
+    Adjuster adjuster = db.searchAdjuster(name);
+    if (adjuster != null) {
+      if (db.passwordVerification(adjuster, 3)) {
+        adjusterPortalDisplay(adjuster);
+        adjusterMainMenu(adjuster,count,db);
+        return;
       } else {
         mainFunction(db);
         return;
       }
     } else {
       if (count > 0) {
-        System.out.println("\t\tYou have entered an invalid Adjuster Username\n\n\t\tIf you want to exit\t\t\t\t\t\t Press 1\n\t\tIf you want to enter your Customer Username again\t\t press 2 ");
+        System.out.println("\t\tYou have entered an invalid Adjuster Username\n\n\t\tIf you want to exit\t\t\t\t\t\t Press 1\n\t\tIf you want to enter your Adjuster Username again\t\t press 2 ");
         int t = sc.nextInt();
         if (t == 1) {
           mainFunction(db);
@@ -187,7 +200,7 @@ static InsuranceManagement Management=new InsuranceManagement();
         int t = 3;
         while (t > 0) {
           System.out.print("\033[H\033[2J");
-          System.out.print("\t\tIncorrect Agent Username entered many times\n\t\tThe Screen will return to Main Menu in \' " +t +" \' sec\n\t\t\t\t.");
+          System.out.print("\t\tIncorrect Adjuster Username entered many times\n\t\tThe Screen will return to Main Menu in \' " +t +" \' sec\n\t\t\t\t.");
           timeOut(300);
           t--;
         }

@@ -2,6 +2,7 @@ import java.util.*;
 
 public class Customer {
 
+    static InsuranceManagement Management = new InsuranceManagement();
     static Scanner sc = new Scanner(System.in);
     private String name;
     private String phoneNumber;
@@ -87,12 +88,19 @@ public class Customer {
     }
 
     protected Claim createNewClaim(Customer Cu, Database database) throws InterruptedException {
+        Scanner sc=new Scanner(System.in);
         displayPoliciesId(Cu, database);
         System.out.print("\n\t\tPlease Enter your policy ID : ");
         String policyId = sc.nextLine();
+
         for (Policy policy : policies) {
             if (policy.getId().compareTo(policyId) != 0) {
-                System.out.println("\n\t\t! Policy id not found");
+                System.out.println("\n\t\t! Policy id not found\n\t\tPress 1 to go to Main Menu");
+                int t=sc.nextInt();
+                if (t==1) {
+                    InsuranceManagement.customerPortalDisplay(Cu, database);
+                    return null;
+                }
             } else {
                 Claim claim = new Claim(policyId);
                 return claim;
@@ -111,7 +119,7 @@ public class Customer {
     }
 
     protected void displayPolicies(Customer Cu, Database database) throws InterruptedException {
-        InsuranceManagement Management = new InsuranceManagement();
+        
         System.out.print("\n\t\tYour policies : ");
         for (Policy policy : policies) {
             System.out.println("\t\t" + policy.getId());
@@ -145,13 +153,15 @@ public class Customer {
         }
     }
 
-    protected void displayClaims() {
+    protected void displayClaims(Customer cu,Database database)throws InterruptedException {
         System.out.println("Your claims");
         for (Claim claim : claims) {
             System.out.println(claim.getId());
         }
         if (claims.size() == 0) {
             System.out.println("You have 0 Claims");
+           Management.customerPortalDisplay(cu,database);
+           return;
         }
         boolean isValid = false;
         while (!isValid) {

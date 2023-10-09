@@ -14,7 +14,7 @@ public class Claim {
         System.out.println("Enter the Date of incident: ");
         this.dateOfIncident = sc.next();
         System.out.println("Give a brief description: ");
-        this.description = sc.nextLine();
+        this.description = sc.next();
         System.out.println("Enter requested claim amount: ");
         this.claimAmount = sc.nextDouble();
         this.status = "pending";
