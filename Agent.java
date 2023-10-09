@@ -74,8 +74,8 @@ public class Agent extends Database {
     }
   }
 
-  protected void createNewClaim(Claim claim) {
-    this.addClaim(claim);
+  protected void createNewClaim(Claim claim,Database database) {
+    database.addClaim(claim);
   }
 
   protected void updatePolicy() {
