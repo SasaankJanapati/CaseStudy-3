@@ -58,9 +58,7 @@ public class Customer {
         this.userName = userName;
     }
 
-    Customer(){}
-    {
-        Scanner sc = new Scanner(System.in);
+    Customer(){
         System.out.println("Enter your name");
         this.name = sc.next();
         System.out.println("Enter your phone number");
@@ -91,7 +89,7 @@ public class Customer {
                 System.out.println("Policy id not found");
             } else {
                 Claim claim = new Claim(policyId);
-                new Agent(null,null,null,null).addClaim(claim);
+                new Agent(null,null,null,null,null).addClaim(claim);
             }
         }
     }

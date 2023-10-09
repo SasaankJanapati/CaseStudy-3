@@ -117,7 +117,7 @@ public class InsuranceManagement extends Database {
             //agent.createNewClaim();
             break;
           case 2:
-            agent.createNewPolicy();
+            //agent.createNewPolicy();
             break;
           case 3:
             agent.updatePolicy();
@@ -171,7 +171,7 @@ public class InsuranceManagement extends Database {
     int t = sc.nextInt();
     if (t == 1) {
       LoginDisplay("Customer");
-      Customer(Cu, Ag, Ad, 2);
+      Customer(Cu, Ag, Ad,2);
     }
     if (t == 2) {
       LoginDisplay("Agent");

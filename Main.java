@@ -15,7 +15,6 @@ public class Main {
         
     }
 
-
     public static void main(String[] args) throws InterruptedException {
         Database Db=new Database();
         ArrayList<Customer> Cu = new ArrayList<Customer>();
@@ -24,6 +23,5 @@ public class Main {
         preDefined(Db);
         InsuranceManagement Im=new InsuranceManagement();
         Im.mainFunction(Cu,Ag,Ad);
-        //System.out.println(Cu.ge);
     }
 }

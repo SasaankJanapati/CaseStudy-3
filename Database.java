@@ -46,9 +46,7 @@ public class Database extends Report {
     agents.add(agent);
   }
 
-  protected Customer searchCustomer(
-    String name
-  ) {
+  protected Customer searchCustomer(String name){
     for (Customer customer : customers) {
       if (customer.getUserName().compareTo(name) == 0) {
         return customer;
