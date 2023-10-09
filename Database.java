@@ -65,7 +65,7 @@ public class Database extends Report{
                 System.out.print("\033[H\033[2J");
                 System.out.println("\t\tWelcome to IIT INUSRANCE\n\n\tCustomer UserName : "+Cu.getUserName());
                 System.out.print("\t\t!!!Incorrect Password Entered many times\n\t\tYour account is blocked for 24hrs\n\t\tPlease approach the Bank Manager for enguiry\n\t\tThe Screen will return to Main Menu in \' "+t+" \' sec\n\t\t\t\t.");
-                timeOut(500);
+                timeOut(300);
                 t--;
                 }
                 Cu.setBlocked(true);

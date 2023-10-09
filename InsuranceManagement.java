@@ -24,7 +24,7 @@ public class InsuranceManagement extends Database{
         System.out.println("\t\tIIT INUSRANCE\n\n\tWelcome Agent "+Ag.getName()+"\n\tWhat do you want to do : \n\t\tCreate a new Claim\t\tPress 1\n\t\tCreate a new Policy\t\t\tPress 2\n\t\tUpdate a Policy\t\tPress 3\n\t\tLogout\t\t\t\tPress 4");
     }
 
-    private void Customer(ArrayList<Customer> Cu) throws InterruptedException{
+    private void Customer(ArrayList<Customer> Cu,ArrayList<Agent> Ag,ArrayList<Adjuster> Ad,int count) throws InterruptedException{
         String s=sc.next();
         Customer customer=Db.searchCustomer(s,Cu);
         if(customer!=null){
@@ -42,28 +42,42 @@ public class InsuranceManagement extends Database{
                         customer.displayPolicies();
                         break;
                     case 4:
-                        mainFunction(Cu);
+                        mainFunction(Cu,Ag,Ad);
                         break;
                 }
             }else{
-                mainFunction(Cu);
+                mainFunction(Cu,Ag,Ad);
                 return;
             }
         }else{
-            System.out.print("\t\tYou have entered an invalid Customer Username\n\n\t\tPlease Enter your Customer Username again : ");
-            Customer(Cu);
-            return;
+            if(count>0){
+                System.out.println("\t\tYou have entered an invalid Customer Username\n\n\t\tIf you want to exit\t\t\t\t\t\t Press 1\n\t\tIf you want to enter your Customer Username again\t\t press 2 ");
+                int t=sc.nextInt();
+                if(t==1){mainFunction(Cu, Ag, Ad);return;}
+                else{LoginDisplay("Customer");
+                    Customer(Cu,Ag,Ad,count-=1);return;}
+            }else{
+                int t=3;
+                while(t>0){
+                    System.out.print("\033[H\033[2J");
+                    System.out.print("\t\tIncorrect Customer Username entered many times\n\t\tThe Screen will return to Main Menu in \' "+t+" \' sec\n\t\t\t\t.");
+                    timeOut(300);
+                    t--;
+                }
+                mainFunction(Cu, Ag, Ad);
+                return;
+            }
         }
     }
 
-    /*private void Agent(ArrayList<Agent> Ag) throws InterruptedException{
+    private void Agent(ArrayList<Customer> Cu,ArrayList<Agent> Ag,ArrayList<Adjuster> Ad,int count) throws InterruptedException{
        String name=sc.next();
         Agent agent=Db.searchAgent(name,Ag);
         if(agent!=null){
             if(Db.passwordVerification(agent, 3)){
                 agentPortalDisplay(agent);
                 int t=sc.nextInt();
-                witch(t){
+                switch(t){
                     case 1:
                         //agent.createNewClaim();
                         break;
@@ -74,30 +88,44 @@ public class InsuranceManagement extends Database{
                         agent.updatePolicy();
                         break;
                     case 4:
-                        mainFunction(Cu);
+                        mainFunction(Cu,Ag,Ad);
                         break;
                 }
             }else{
-                mainFunction(Cu);
+                mainFunction(Cu,Ag,Ad);
                 return;
             }
         }else{
-            System.out.print("\t\tYou have entered an invalid Customer Username\n\n\t\tPlease Enter your Customer Username again : ");
-            Customer(agent);
-            return;
+            if(count>0){
+                System.out.println("\t\tYou have entered an invalid Agent Username\n\n\t\tIf you want to exit\t\t\t\t\t\t Press 1\n\t\tIf you want to enter your Customer Username again\t\t press 2 ");
+                int t=sc.nextInt();
+                if(t==1){mainFunction(Cu, Ag, Ad);return;}
+                else{LoginDisplay("Agent");
+                    Agent(Cu,Ag,Ad,count-=1);return;}
+            }else{
+                int t=3;
+                while(t>0){
+                    System.out.print("\033[H\033[2J");
+                    System.out.print("\t\tIncorrect Agent Username entered many times\n\t\tThe Screen will return to Main Menu in \' "+t+" \' sec\n\t\t\t\t.");
+                    timeOut(300);
+                    t--;
+                }
+                mainFunction(Cu, Ag, Ad);
+                return;
+            }
         }
-    }*/
+    }
 
-    public void mainFunction(ArrayList<Customer> Cu) throws InterruptedException{
+    public void mainFunction(ArrayList<Customer> Cu,ArrayList<Agent> Ag,ArrayList<Adjuster> Ad) throws InterruptedException{
         welcomeDisplay();
         int t=sc.nextInt();
         if(t==1){
             LoginDisplay("Customer");
-            Customer(Cu);
+            Customer(Cu,Ag,Ad,2);
         }
         if(t==2){
             LoginDisplay("Agent");
-            Customer(Cu);
+            Agent(Cu,Ag,Ad,2);
         }
     }
 

@@ -19,7 +19,7 @@ public class Main{
         InsuranceManagement Im=new InsuranceManagement();
         System.out.println("Hi");
         preDefined(Cu);
-        Im.mainFunction(Cu);
+        Im.mainFunction(Cu,Ag,Ad);
         //System.out.println(Cu.ge);
     }
 }
