@@ -26,7 +26,9 @@ public class InsuranceManagement extends Database {
         customer.displayClaims(customer, database);     // Displays the Claims of Customers 
         break;
       case 3:
-        database.addClaim(customer.createNewClaim(customer, database));     // Creates new Claims of Customers 
+        Claim claim = customer.createNewClaim(customer, database);
+        database.addClaim(claim);     // Creates new Claims of Customers 
+        customer.addClaim(claim);
         System.out.println("Your claim has been created\n\t\tPress 1 to go to main menu");
         t = sc.nextInt();
         customerPortalDisplay(customer, database);        // Again returns The Customer Portal
