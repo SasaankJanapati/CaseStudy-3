@@ -66,8 +66,8 @@ public class Agent extends Database {
   }
 
   //This is for exisiting customer 
-  protected void createNewPolicy(String name, Database database) {
-    Customer customer = this.searchCustomer(name);
+  protected void createNewPolicy(String userName, Database database) {
+    Customer customer = database.searchCustomer(userName);
     if (customer == null) {
       System.out.println("Customer not found");
     } else {

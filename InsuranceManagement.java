@@ -19,7 +19,7 @@ static InsuranceManagement Management=new InsuranceManagement();
     customerMainMenu(Cu,2,database);}
   static void agentPortalDisplay(Agent Ag) {
     System.out.print("\033[H\033[2J");
-    System.out.println("\t\tIIT INUSRANCE\n\n\tWelcome Agent " +Ag.getName() +"\n\tWhat do you want to do : \n\t\tCreate a new Claim\t\tPress 1\n\t\tCreate a new Policy\t\tPress 2\n\t\tUpdate a Policy\t\t\tPress 3\n\t\tLogout\t\t\t\tPress 4");
+    System.out.println("\t\tIIT INUSRANCE\n\n\tWelcome Agent " +Ag.getName() +"\n\tWhat do you want to do : \n\t\tCreate a new Policy\t\tPress 2\n\t\tUpdate a Policy\t\t\tPress 3\n\t\tLogout\t\t\t\tPress 4");
   }
   static void adjusterPortalDisplay(Adjuster adjuster) {
     System.out.print("\033[H\033[2J");
@@ -43,6 +43,33 @@ static InsuranceManagement Management=new InsuranceManagement();
         break;
       case 4:
         Management.mainFunction(db);
+        break;
+    }
+    return;
+  }
+  private static void agentMainMenu(Agent agent,int count,Database db) throws InterruptedException{
+    int t = sc.nextInt();
+    switch (t) {
+      case 2:
+      System.out.println("\n\t If you want to creat a new policy for an exisiting customer\tPress 1\n\tIf Want to create a new customer\t\tPress 2");
+      t=sc.nextInt();
+      if(t==2){
+        agent.createNewPolicy(db);  //For a new Customer
+        break;
+      }else{
+        System.out.print("\t\tEnter the Customer Name :");
+        String name=sc.next();
+        agent.createNewPolicy(name,db);
+        System.out.println("A New Policy has been created for cusomter : "+name);
+        agentPortalDisplay(agent);
+        agentMainMenu(agent,count,db);
+        break;
+      }
+      case 3:
+        agent.updatePolicy();
+        break;
+      case 4:
+       Management.mainFunction(db);
         break;
     }
     return;
@@ -84,42 +111,21 @@ static InsuranceManagement Management=new InsuranceManagement();
       }
     }}
 
-  private void Agent( Database db,int count) throws InterruptedException {
+  private void Agent( Database db,int count) 
+  throws InterruptedException {
     String name = sc.next();
     Agent agent = db.searchAgent(name);
     if (agent != null) {
       if (db.passwordVerification(agent, 3)) {
         agentPortalDisplay(agent);
-        int t = sc.nextInt();
-        switch (t) {
-          case 1:
-            //agent.createNewClaim();
-            break;
-          case 2:
-          System.out.println("\n\t If you want to creat a new policy for an exisiting customer\tPress 1\n\tIf Want to create a new customer\t\tPress 2");
-          t=sc.nextInt();
-          if(t==2){
-            agent.createNewPolicy(db);  //For a new Customer
-            break;
-          }else{
-            System.out.print("\t\tEnter the Customer Name :");
-            name=sc.next();
-            agent.createNewPolicy(name,db);
-            break;
-          }
-          case 3:
-            agent.updatePolicy();
-            break;
-          case 4:
-            mainFunction(db);
-            break;
-        }
+        agentMainMenu(agent,3,db);
       } else {
         mainFunction(db);
         return;
       }
     } else {
-      if (count > 0) {
+      if (count > 0)
+       {
         System.out.println("\t\tYou have entered an invalid Agent Username\n\n\t\tIf you want to exit\t\t\t\t\t\t Press 1\n\t\tIf you want to enter your Customer Username again\t\t press 2 ");
         int t = sc.nextInt();
         if (t == 1) {
@@ -130,9 +136,11 @@ static InsuranceManagement Management=new InsuranceManagement();
           Agent(db,count -= 1);
           return;
         }
-      } else {
+      } 
+      else {
         int t = 3;
-        while (t > 0) {
+        while (t > 0) 
+        {
           System.out.print("\033[H\033[2J");
           System.out.print("\t\tIncorrect Agent Username entered many times\n\t\tThe Screen will return to Main Menu in \' " +t +" \' sec\n\t\t\t\t.");
           timeOut(300);
