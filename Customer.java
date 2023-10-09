@@ -4,7 +4,7 @@ public class Customer {
     
     static Scanner sc=new Scanner(System.in);
     private String name;
-    private String phoneNumber;
+    private String phoneNumber; 
     private String email;
     private String address;
     private String userName;
@@ -57,7 +57,7 @@ public class Customer {
     }
 
     Customer(){}
-    /*{
+    {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter your name");
         this.name = sc.next();
@@ -71,7 +71,7 @@ public class Customer {
         this.userName = sc.next();
         System.out.println("Enter your password");
         this.password = sc.next();
-    }*/
+    }
     protected void addPolicy(Policy policy) {
         policies.add(policy);
     }

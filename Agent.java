@@ -54,10 +54,11 @@ public class Agent extends Database {
     Policy policy = new Policy();
     customer.addPolicy(policy);
     this.addPolicy(policy);
+    this.addCustomer(customer);
   }
 
-  protected void createNewPolicy(String name, ArrayList<Customer> Cu) {
-    Customer customer = this.searchCustomer(name, Cu);
+  protected void createNewPolicy(String name) {
+    Customer customer = this.searchCustomer(name);
     if (customer == null) {
       System.out.println("Customer not found");
     } else {
