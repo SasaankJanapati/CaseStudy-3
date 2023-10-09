@@ -1,7 +1,8 @@
 import java.util.*;
 
-public class Main{
-    static Scanner sc=new Scanner(System.in);
+public class Main {
+
+  static Scanner sc = new Scanner(System.in);
 
     // Predefined Users for Test case
     static void preDefined(Database Db) {
