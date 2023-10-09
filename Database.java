@@ -18,12 +18,14 @@ public class Database extends Report {
   private ArrayList<Policy> policies;
   private ArrayList<Claim> claims;
   private String fiancialSummary;
+
   Database() {
     this.adjusters = new ArrayList<Adjuster>();
     this.agents = new ArrayList<Agent>();
     this.customers = new ArrayList<Customer>();
     this.policies = new ArrayList<Policy>();
     this.claims = new ArrayList<Claim>();
+    this.fiancialSummary = "";
   }
 
   protected void addPolicy(Policy policy) {
@@ -46,7 +48,7 @@ public class Database extends Report {
     agents.add(agent);
   }
 
-  protected Customer searchCustomer(String name){
+  protected Customer searchCustomer(String name) {
     for (Customer customer : customers) {
       if (customer.getUserName().compareTo(name) == 0) {
         return customer;
@@ -63,18 +65,20 @@ public class Database extends Report {
     }
     return null;
   }
+
   protected Adjuster searchAdjuster(String name) {
     for (Adjuster adjuster : adjusters) {
       if (adjuster.getUserName().compareTo(name) == 0) {
         return adjuster;
-        
+
       }
     }
-   // System.out.println("hi");
+    // System.out.println("hi");
     return null;
   }
+
   protected boolean passwordVerification(Customer Cu, int count)
-    throws InterruptedException {
+      throws InterruptedException {
     System.out.print("\t\tPlease Enter you Password : ");
 
     String password = sc.next();
@@ -83,10 +87,9 @@ public class Database extends Report {
         System.out.print("\033[H\033[2J");
         System.out.println("\t\tWelcome to IIT INUSRANCE");
         System.out.println(
-          "\t\t!!!You have entered an incorrect password\n\tYou have " +
-          count +
-          " attempts after which your account will be blocked for 24 hours"
-        );
+            "\t\t!!!You have entered an incorrect password\n\tYou have " +
+                count +
+                " attempts after which your account will be blocked for 24 hours");
         return passwordVerification(Cu, count -= 1);
       } else {
         // t=countdown time
@@ -94,19 +97,18 @@ public class Database extends Report {
         while (t > 0) {
           System.out.print("\033[H\033[2J");
           System.out.println(
-            "\t\tWelcome to IIT INUSRANCE\n\n\tCustomer UserName : " +
-            Cu.getUserName()
-          );
+              "\t\tWelcome to IIT INUSRANCE\n\n\tCustomer UserName : " +
+                  Cu.getUserName());
           System.out.print(
-            "\t\t!!!Incorrect Password Entered many times\n\t\tYour account is blocked for 24hrs\n\t\tPlease approach the Bank Manager for enguiry\n\t\tThe Screen will return to Main Menu in \' " +
-            t +
-            " \' sec\n\t\t\t\t."
-          );
+              "\t\t!!!Incorrect Password Entered many times\n\t\tYour account is blocked for 24hrs\n\t\tPlease approach the Bank Manager for enguiry\n\t\tThe Screen will return to Main Menu in \' "
+                  +
+                  t +
+                  " \' sec\n\t\t\t\t.");
           timeOut(300);
           t--;
         }
         Cu.setBlocked(true);
-        //InsuranceManagement.mainFunction();
+        // InsuranceManagement.mainFunction();
         return false;
       }
     }
@@ -114,7 +116,7 @@ public class Database extends Report {
   }
 
   protected boolean passwordVerification(Agent Ag, int count)
-    throws InterruptedException {
+      throws InterruptedException {
     System.out.print("\t\tPlease Enter you Password : ");
 
     String password = sc.next();
@@ -123,10 +125,9 @@ public class Database extends Report {
         System.out.print("\033[H\033[2J");
         System.out.println("\t\tWelcome to IIT INUSRANCE");
         System.out.println(
-          "\t\t!!!You have entered an incorrect password\n\tYou have " +
-          count +
-          " attempts after which your account will be blocked for 24 hours"
-        );
+            "\t\t!!!You have entered an incorrect password\n\tYou have " +
+                count +
+                " attempts after which your account will be blocked for 24 hours");
         return passwordVerification(Ag, count -= 1);
       } else {
         // t=countdown time
@@ -134,63 +135,61 @@ public class Database extends Report {
         while (t > 0) {
           System.out.print("\033[H\033[2J");
           System.out.println(
-            "\t\tWelcome to IIT INUSRANCE\n\n\tCustomer UserName : " +
-            Ag.getUserName()
-          );
+              "\t\tWelcome to IIT INUSRANCE\n\n\tCustomer UserName : " +
+                  Ag.getUserName());
           System.out.print(
-            "\t\t!!!Incorrect Password Entered many times\n\t\tYour account is blocked for 24hrs\n\t\tPlease approach the Bank Manager for enguiry\n\t\tThe Screen will return to Main Menu in \' " +
-            t +
-            " \' sec\n\t\t\t\t."
-          );
+              "\t\t!!!Incorrect Password Entered many times\n\t\tYour account is blocked for 24hrs\n\t\tPlease approach the Bank Manager for enguiry\n\t\tThe Screen will return to Main Menu in \' "
+                  +
+                  t +
+                  " \' sec\n\t\t\t\t.");
           timeOut(500);
           t--;
         }
         Ag.setBlocked(true);
-        //InsuranceManagement.mainFunction();
+        // InsuranceManagement.mainFunction();
         return false;
       }
     }
     return true;
   }
-  protected boolean passwordVerification(Adjuster Ad, int count)
-  throws InterruptedException {
-  System.out.print("\t\tPlease Enter you Password : ");
 
-  String password = sc.next();
-  if (!password.equals(Ad.getPassword())) {
-    if (count >= 1) {
-      System.out.print("\033[H\033[2J");
-      System.out.println("\t\tWelcome to IIT INUSRANCE");
-      System.out.println(
-        "\t\t!!!You have entered an incorrect password\n\tYou have " +
-        count +
-        " attempts after which your account will be blocked for 24 hours"
-      );
-      return passwordVerification(Ad, count -= 1);
-    } else {
-      // t=countdown time
-      int t = 4;
-      while (t > 0) {
+  protected boolean passwordVerification(Adjuster Ad, int count)
+      throws InterruptedException {
+    System.out.print("\t\tPlease Enter you Password : ");
+
+    String password = sc.next();
+    if (!password.equals(Ad.getPassword())) {
+      if (count >= 1) {
         System.out.print("\033[H\033[2J");
+        System.out.println("\t\tWelcome to IIT INUSRANCE");
         System.out.println(
-          "\t\tWelcome to IIT INUSRANCE\n\n\tAdjuster UserName : " +
-          Ad.getUserName()
-        );
-        System.out.print(
-          "\t\t!!!Incorrect Password Entered many times\n\t\tYour account is blocked for 24hrs\n\t\tPlease approach the Bank Manager for enguiry\n\t\tThe Screen will return to Main Menu in \' " +
-          t +
-          " \' sec\n\t\t\t\t."
-        );
-        timeOut(500);
-        t--;
+            "\t\t!!!You have entered an incorrect password\n\tYou have " +
+                count +
+                " attempts after which your account will be blocked for 24 hours");
+        return passwordVerification(Ad, count -= 1);
+      } else {
+        // t=countdown time
+        int t = 4;
+        while (t > 0) {
+          System.out.print("\033[H\033[2J");
+          System.out.println(
+              "\t\tWelcome to IIT INUSRANCE\n\n\tAdjuster UserName : " +
+                  Ad.getUserName());
+          System.out.print(
+              "\t\t!!!Incorrect Password Entered many times\n\t\tYour account is blocked for 24hrs\n\t\tPlease approach the Bank Manager for enguiry\n\t\tThe Screen will return to Main Menu in \' "
+                  +
+                  t +
+                  " \' sec\n\t\t\t\t.");
+          timeOut(500);
+          t--;
+        }
+        Ad.setBlocked(true);
+        // InsuranceManagement.mainFunction();
+        return false;
       }
-      Ad.setBlocked(true);
-      //InsuranceManagement.mainFunction();
-      return false;
     }
+    return true;
   }
-  return true;
-}
 
   protected Policy searchPolicy(String policyId) {
     for (Policy policy : policies) {
@@ -217,13 +216,20 @@ public class Database extends Report {
     }
   }
 
-  protected void displayPendingClaims() {
+  protected int displayPendingClaims() {
     System.out.println("Pending Claim ids");
+    boolean isEmpty = true;
     for (Claim claim : claims) {
       if (claim.getStatus().compareTo("pending") == 0) {
         System.out.println(claim.getId());
+        isEmpty = false;
       }
     }
+    if (isEmpty) {
+      System.out.println("No Pending Claims");
+      return -1;
+    }
+    return 0;
   }
 
   protected void displayPolicyReport() {
@@ -242,5 +248,9 @@ public class Database extends Report {
 
   protected void financialSummaryAdder(String newTransaction) {
     this.fiancialSummary = this.fiancialSummary + newTransaction + '\n';
+  }
+
+  protected void printFinancialSummary() {
+    System.out.println("Financial Summary\n" + fiancialSummary);
   }
 }

@@ -7,24 +7,28 @@ public class Adjuster extends Database {
   private String userName;
   private String password;
   private boolean isBlocked = false;
-    public boolean isBlocked() {
-        return isBlocked;
-    }
 
-    public void setBlocked(boolean isBlocked) {
-        this.isBlocked = isBlocked;
-    }
-    public String getPassword() {
-      return password;
-    }
-    public String getUserName() {
-      return userName;
-    }
-    public String getName() {
-      return name;
-    }
-  Adjuster(String name,String id,String userName,String password,Database database)
-  {
+  public boolean isBlocked() {
+    return isBlocked;
+  }
+
+  public void setBlocked(boolean isBlocked) {
+    this.isBlocked = isBlocked;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public String getUserName() {
+    return userName;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  Adjuster(String name, String id, String userName, String password, Database database) {
     this.name = name;
     this.id = id;
     this.userName = userName;
@@ -33,9 +37,13 @@ public class Adjuster extends Database {
   }
 
   protected void processClaim(Database db) {
-    db.displayPendingClaims();
-    System.out.println("Select Claim id to process");
     Scanner sc = new Scanner(System.in);
+    int status = db.displayPendingClaims();
+    if (status == -1) {
+      System.out.println("No pending claims to process");
+      return;
+    }
+    System.out.println("Select Claim id to process");
     String claimId = sc.next();
     Claim claim = db.searchClaims(claimId);
     if (claim == null) {
@@ -54,8 +62,7 @@ public class Adjuster extends Database {
           claim.setStatus("approved");
           System.out.println("You have approved the claim");
           db.financialSummaryAdder(
-              claim.getPolicyId() + " claimed " + claim.getClaimAmount()
-            );
+              claim.getPolicyId() + " claimed " + claim.getClaimAmount());
           validChoice = true;
         } else if (choice.compareTo("n") == 0) {
           claim.setStatus("rejected");
