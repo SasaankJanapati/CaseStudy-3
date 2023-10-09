@@ -20,8 +20,8 @@ public class Customer {
     private ArrayList<Policy> policies;
     private ArrayList<Claim> claims;
     Customer(String name, String phoneNumber, String email,String address, String userName, String password) {
-        
-        
+        this.policies=new ArrayList<Policy>();
+        this.claims = new ArrayList<Claim>();
         this.setName(name);
         this.setPhoneNumber(phoneNumber);
         this.email = email;
@@ -73,8 +73,7 @@ public class Customer {
         this.password = sc.next();
     }
     protected void addPolicy(Policy policy) {
-        Policy P=new Policy(true,"1 Jan 2025","Car",100000,10000,5);
-        this.policies.add(P);
+        this.policies.add(policy);
     }
 
     protected void addClaim(Claim claim) {
@@ -94,7 +93,7 @@ public class Customer {
         }
         return null;
     }
-    protected void displayPolicies(){
+    protected void displayPolicies(Customer Cu){
         System.out.println("Your policies");
         for (Policy policy : policies) {
             System.out.println(policy.getId());
@@ -115,6 +114,10 @@ public class Customer {
                 System.out.println("");
             }
         }
+        System.out.print("\t\tPress 1 to go to main menu :");
+        int t=sc.nextInt();
+        InsuranceManagement.customerPortalDisplay(Cu);
+        return;
     }
     protected void displayClaims(){
         System.out.println("Your claims");

@@ -62,6 +62,11 @@ public class Agent extends Database {
     this.addPolicy(policy);
     database.addCustomer(customer);
   }
+  protected void createNewPolicy(Customer c1,Database database){
+    Policy policy =new Policy(true,"1 Jan 2050","car",1000000,10000,10);
+    c1.addPolicy(policy);
+    database.addPolicy(policy);
+  }
 
   protected void createNewPolicy(String name, Database database) {
     Customer customer = this.searchCustomer(name);

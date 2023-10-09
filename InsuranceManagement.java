@@ -54,7 +54,7 @@ public class InsuranceManagement extends Database {
             customer.displayClaims();
             break;
           case 3:
-            customer.displayPolicies();
+            customer.displayPolicies(customer);
             break;
           case 4:
             mainFunction(db);

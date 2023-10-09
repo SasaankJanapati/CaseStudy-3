@@ -19,11 +19,11 @@ public class Database extends Report {
   private ArrayList<Claim> claims;
   private String fiancialSummary;
   Database() {
-    this.adjusters = new ArrayList<>();
-    this.agents = new ArrayList<>();
-    this.customers = new ArrayList<>();
-    this.policies = new ArrayList<>();
-    this.claims = new ArrayList<>();
+    this.adjusters = new ArrayList<Adjuster>();
+    this.agents = new ArrayList<Agent>();
+    this.customers = new ArrayList<Customer>();
+    this.policies = new ArrayList<Policy>();
+    this.claims = new ArrayList<Claim>();
   }
 
   protected void addPolicy(Policy policy) {

@@ -16,7 +16,13 @@ public class Main {
         Db.addCustomer(c3);
         Db.addCustomer(c4);
         Db.addCustomer(c5);
-       
+       Agent agent=new Agent("A", "123", "agent", "agent", Db);
+       Db.addAgent(agent);
+       agent.createNewPolicy(c1,Db);
+       agent.createNewPolicy(c2,Db);
+       agent.createNewPolicy(c3,Db);
+       agent.createNewPolicy(c4,Db);
+       agent.createNewPolicy(c5,Db);
     }
 
 
