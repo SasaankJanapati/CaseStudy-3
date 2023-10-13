@@ -243,22 +243,30 @@ public class InsuranceManagement extends Database {
   //This is the Main Fuction which is called in the Main Class
   public void mainFunction(Database database) throws InterruptedException {
     welcomeDisplay();
-    int t = sc.nextInt();
-    if (t == 1) {
-      loginDisplay("Customer");
-      Customer(2, database);
+    try{
+      int t = sc.nextInt();
+      if (t == 1) {
+        loginDisplay("Customer");
+        Customer(2, database);
+      }
+      if (t == 2) {
+        loginDisplay("Agent");
+        Agent(database, 2);
+      }
+      if (t == 3) {
+        loginDisplay("Adjuster");
+        Adjuster(database, 2);
+      }
+      if (t == 4) {
+        database.printFinancialSummary();
+        mainFunction(database);
+      }
     }
-    if (t == 2) {
-      loginDisplay("Agent");
-      Agent(database, 2);
-    }
-    if (t == 3) {
-      loginDisplay("Adjuster");
-      Adjuster(database, 2);
-    }
-    if (t == 4) {
-      database.printFinancialSummary();
+    catch(InputMismatchException exception){
+      System.out.println("U have entered invalid input");
+      sc.nextLine();
       mainFunction(database);
     }
+
   }
 }
