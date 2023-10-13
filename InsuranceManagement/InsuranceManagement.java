@@ -92,16 +92,18 @@ public class InsuranceManagement extends Database {
   //Customer main method containing customers methods. It is made private to restrict its access outside the class
   private void Customer(int count, Database database) throws InterruptedException {
     String s = sc.next();
-    Customer customer = database.searchCustomer(s);       // Searches customer in the Database
-    if (customer != null) {
-      if (database.passwordVerification(customer, 3)) {     // Verifies the Password of the Customer
+    try{
+        Customer customer = database.searchCustomer(s);
+        if (database.passwordVerification(customer, 3)) {     // Verifies the Password of the Customer
         customerPortalDisplay(customer, database);                
         customerMainMenu(customer, count, database);
       } else {
         mainFunction(database);                     
         return;
       }
-    } else {
+    }
+           // Searches customer in the Database
+    catch(CustomerNotFoundException exception) {
       if (count > 0) {
         System.out.println("\t\tYou have entered an invalid Customer Username\n\n\t\tIf you want to exit\t\t\t\t\t\t Press 1\n\t\tIf you want to enter your Customer Username again\t\t press 2 ");
         int t = sc.nextInt();
@@ -130,16 +132,18 @@ public class InsuranceManagement extends Database {
   private void Agent(Database database, int count)
       throws InterruptedException {
     String name = sc.next();
-    Agent agent = database.searchAgent(name);                     //Searches the Agent in the database
-    if (agent != null) {
+    try{
+      Agent agent = database.searchAgent(name);                     //Searches the Agent in the database
       if (database.passwordVerification(agent, 3)) {        //Password verification for Agent
         agentPortalDisplay(agent);
         agentMainMenu(agent, 3, database);                  //Goes to the main menu of Agent
-      } else {
+      } 
+      else {
         mainFunction(database);
         return;
       }
-    } else {
+    }
+    catch(AgentNotFoundException exception){
       if (count > 0) {
         System.out.println("\t\tYou have entered an invalid Agent Username\n\n\t\tIf you want to exit\t\t\t\t\t\t Press 1\n\t\tIf you want to enter your Customer Username again\t\t press 2 ");
         int t = sc.nextInt();
@@ -167,9 +171,9 @@ public class InsuranceManagement extends Database {
   //Adjuster main method containing agents methods It is made private to restrict its access outside the class
   private void Adjuster(Database database, int count) throws InterruptedException {
     String name = sc.next();
-    Adjuster adjuster = database.searchAdjuster(name);          //Searches the Adjuster in the database
-    if (adjuster != null) {
-      if (database.passwordVerification(adjuster, 3)) {   //Password Verificatio of the Adjuster
+    try{
+        Adjuster adjuster = database.searchAdjuster(name);//Searches the Adjuster in the database
+        if (database.passwordVerification(adjuster, 3)) {   //Password Verificatio of the Adjuster
         adjusterPortalDisplay(adjuster);
         adjusterMainMenu(adjuster, count, database);            //Adjuster Main Menu
         return;
@@ -177,8 +181,10 @@ public class InsuranceManagement extends Database {
         Management.mainFunction(database);
         return;
       }
-    } else {
-      if (count > 0) {
+    }          
+    catch (AdjusterNotFoundException exception){
+        System.out.println("Please Try Again");
+        if (count > 0) {
         System.out.println("\t\tYou have entered an invalid Adjuster Username\n\n\t\tIf you want to exit\t\t\t\t\t\t Press 1\n\t\tIf you want to enter your Adjuster Username again\t\t press 2 ");
         int t = sc.nextInt();
         if (t == 1) {
@@ -203,6 +209,7 @@ public class InsuranceManagement extends Database {
         return;
       }
     }
+    
   }
 
   //Main Display Of Inusrance Page made static so that it can be called without object Creation
