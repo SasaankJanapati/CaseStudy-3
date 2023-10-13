@@ -2,6 +2,13 @@ package InsuranceManagement;
 import java.util.*;
 
 public class Customer {
+      void CheckPhoneNumber (String phoneNumber) throws PhoneNumberException
+      {
+        if(phoneNumber.length()!= 10)
+        {
+            throw new PhoneNumberException("Invalid phone number"+"\n"+"please enter a valid phone number");
+        }
+      }
 
     static InsuranceManagement Management = new InsuranceManagement();
     static Scanner sc = new Scanner(System.in);
@@ -69,13 +76,21 @@ public class Customer {
     }
 
     // constructor for customer (it is used when agent adds policy for new customer)
-    Customer() {
+    Customer(){
         this.policies = new ArrayList<Policy>();
         this.claims = new ArrayList<Claim>();
         System.out.println("Enter the Customer name");
         this.name = sc.next();
         System.out.println("Enter the Customer phone number");
         this.phoneNumber = sc.next();
+        try{
+          this.CheckPhoneNumber(phoneNumber);
+        }
+        catch(PhoneNumberException e)
+        {
+            System.out.println(e.getMessage());
+            this.phoneNumber = sc.next();
+        }
         System.out.println("Enter the Customer email id");
         this.email = sc.next();
         System.out.println("Enter the Customer address");
