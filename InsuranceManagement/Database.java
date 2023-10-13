@@ -4,6 +4,7 @@ import java.util.*;
 // In this class we implemented encapsulation by using protected methods,variables and private methods,variables
 // Here we are using inheritence here by extending the report class to database 
 // Here we are uisng exceprtion handeling to make to make some dilays in the output generation
+
 public class Database extends Report {
 // Here we are using Static Scanner to use the scanner in all the methods across the classes 
   static Scanner sc = new Scanner(System.in);
@@ -52,33 +53,31 @@ public Database() {
     agents.add(agent);
   }
 // This method is used to search whether the given customer user name is in the existing customers
-  protected Customer searchCustomer(String name) {
+  protected Customer searchCustomer(String name) throws CustomerNotFoundException {
     for (Customer customer : customers) {
       if (customer.getUserName().compareTo(name) == 0) {
         return customer;
       }
     }
-    return null;
+    throw new CustomerNotFoundException();
   }
 // This method is used to search whether the given agent user name is in the existing users
-  protected Agent searchAgent(String name) {
+  protected Agent searchAgent(String name) throws AgentNotFoundException {
     for (Agent agent : agents) {
       if (agent.getUserName().compareTo(name) == 0) {
         return agent;
       }
     }
-    return null;
+    throw new AgentNotFoundException();
   }
 // This method is used to search whether the given adjuster user name is in the existing adjusters
-  protected Adjuster searchAdjuster(String name) {
+  protected Adjuster searchAdjuster(String name) throws AdjusterNotFoundException {
     for (Adjuster adjuster : adjusters) {
       if (adjuster.getUserName().compareTo(name) == 0) {
         return adjuster;
-
       }
     }
-    // System.out.println("hi");
-    return null;
+    throw new AdjusterNotFoundException();
   }
 // This method is used to whether the given passward is correct or not for customer
   protected boolean passwordVerification(Customer costumer, int count)

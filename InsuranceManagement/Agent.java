@@ -105,14 +105,16 @@ static Scanner sc=new Scanner(System.in);
 
   // Overloaded method 3
   protected void createNewPolicy(String userName, Database database) {
-    Customer customer = database.searchCustomer(userName);
-    if (customer == null) {
-      System.out.println("Customer not found");
-    } else {
+    try{
+      Customer customer = database.searchCustomer(userName);
       Policy policy = new Policy();
       customer.addPolicy(policy);
       database.addPolicy(policy);
     }
+    catch(CustomerNotFoundException exception){
+      System.out.println("Please try again");
+    }
+    
   }
   /*
    * The customer should not have access to the database
