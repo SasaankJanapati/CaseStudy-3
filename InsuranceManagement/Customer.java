@@ -1,6 +1,15 @@
+package InsuranceManagement;
 import java.util.*;
 
 public class Customer {
+    // this method is used to check the exception on phonenumber.
+      void CheckPhoneNumber (String phoneNumber) throws PhoneNumberException
+      {
+        if(phoneNumber.length()!= 10)
+        {
+            throw new PhoneNumberException("Invalid phone number"+"\n"+"please enter a valid phone number");
+        }
+      }
 
     static InsuranceManagement Management = new InsuranceManagement();
     static Scanner sc = new Scanner(System.in);
@@ -24,7 +33,7 @@ public class Customer {
     private ArrayList<Claim> claims;
 
     // parametrised constructor for customer
-    Customer(String name, String phoneNumber, String email, String address, String userName, String password) {
+    public Customer(String name, String phoneNumber, String email, String address, String userName, String password) {
         this.policies = new ArrayList<Policy>();
         this.claims = new ArrayList<Claim>();
         this.setName(name);
@@ -68,13 +77,22 @@ public class Customer {
     }
 
     // constructor for customer (it is used when agent adds policy for new customer)
-    Customer() {
+    Customer(){
         this.policies = new ArrayList<Policy>();
         this.claims = new ArrayList<Claim>();
         System.out.println("Enter the Customer name");
         this.name = sc.next();
         System.out.println("Enter the Customer phone number");
         this.phoneNumber = sc.next();
+        // this are written to implement the exception handling.
+        try{
+          this.CheckPhoneNumber(phoneNumber);
+        }
+        catch(PhoneNumberException e)
+        {
+            System.out.println(e.getMessage());
+            this.phoneNumber = sc.next();
+        }
         System.out.println("Enter the Customer email id");
         this.email = sc.next();
         System.out.println("Enter the Customer address");
@@ -173,12 +191,12 @@ public class Customer {
     // exists(customerPortalDisplay takes us back to customer page)
     protected void displayClaims(Customer customer, Database database) throws InterruptedException {
         System.out.println("Your claims");
-        for (Claim claim : claims) {
+        for (Claim claim : this.claims) {
             System.out.println(claim.getId());
         }
-        if (claims.size() == 0) {
+        if (this.claims.size() == 0) {
             System.out.println("You have 0 Claims");
-            Management.customerPortalDisplay(customer, database);
+            InsuranceManagement.customerPortalDisplay(customer, database);
             return;
         }
         boolean isValid = false;
@@ -186,7 +204,7 @@ public class Customer {
             System.out.println("Choose a Claim Id");
             Scanner sc = new Scanner(System.in);
             String claimId = sc.next();
-            for (Claim claim : claims) {
+            for (Claim claim : this.claims) {
                 if (claim.getId().compareTo(claimId) == 0) {
                     claim.displayClaim();
                     isValid = true;
@@ -196,6 +214,8 @@ public class Customer {
                 System.out.println("Invalid Claim Id");
             }
         }
+        InsuranceManagement.customerPortalDisplay(customer, database);
+        return;
     }
 
 }

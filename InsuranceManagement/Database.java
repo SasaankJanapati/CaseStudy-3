@@ -1,8 +1,10 @@
+package InsuranceManagement;
 import java.util.*;
 // This is tje database class which contains all thge data realted to costumers,agents,adjusters,policies,financial statementse etc.
 // In this class we implemented encapsulation by using protected methods,variables and private methods,variables
 // Here we are using inheritence here by extending the report class to database 
 // Here we are uisng exceprtion handeling to make to make some dilays in the output generation
+
 public class Database extends Report {
 // Here we are using Static Scanner to use the scanner in all the methods across the classes 
   static Scanner sc = new Scanner(System.in);
@@ -22,7 +24,7 @@ public class Database extends Report {
   private ArrayList<Claim> claims;
   private String financialSummary;
 // This is a constructor which is used to initialize all the arraylists and variables .
-  Database() {
+public Database() {
     this.adjusters = new ArrayList<Adjuster>();
     this.agents = new ArrayList<Agent>();
     this.customers = new ArrayList<Customer>();
@@ -35,7 +37,7 @@ public class Database extends Report {
     policies.add(policy);
   }
 // This method is used to add customers to customers array list.
-  protected void addCustomer(Customer customer) {
+  public void addCustomer(Customer customer) {
     customers.add(customer);
   }
 // This method is used to add claim to claims array list.
@@ -43,41 +45,39 @@ public class Database extends Report {
     claims.add(claim);
   }
 // This method is used to add adjusters to adjuster array list.
-  protected void addAdjuster(Adjuster adjuster) {
+  public void addAdjuster(Adjuster adjuster) {
     adjusters.add(adjuster);
   }
 // This method is used to add agents to agent  array list.
-  protected void addAgent(Agent agent) {
+  public void addAgent(Agent agent) {
     agents.add(agent);
   }
 // This method is used to search whether the given customer user name is in the existing customers
-  protected Customer searchCustomer(String name) {
+  protected Customer searchCustomer(String name) throws CustomerNotFoundException {
     for (Customer customer : customers) {
       if (customer.getUserName().compareTo(name) == 0) {
         return customer;
       }
     }
-    return null;
+    throw new CustomerNotFoundException();
   }
 // This method is used to search whether the given agent user name is in the existing users
-  protected Agent searchAgent(String name) {
+  protected Agent searchAgent(String name) throws AgentNotFoundException {
     for (Agent agent : agents) {
       if (agent.getUserName().compareTo(name) == 0) {
         return agent;
       }
     }
-    return null;
+    throw new AgentNotFoundException();
   }
 // This method is used to search whether the given adjuster user name is in the existing adjusters
-  protected Adjuster searchAdjuster(String name) {
+  protected Adjuster searchAdjuster(String name) throws AdjusterNotFoundException {
     for (Adjuster adjuster : adjusters) {
       if (adjuster.getUserName().compareTo(name) == 0) {
         return adjuster;
-
       }
     }
-    // System.out.println("hi");
-    return null;
+    throw new AdjusterNotFoundException();
   }
 // This method is used to whether the given passward is correct or not for customer
   protected boolean passwordVerification(Customer costumer, int count)
@@ -146,7 +146,7 @@ public class Database extends Report {
     }
     return true;
   }
-// This method is used to whether the given passward is correct or not for adjuster
+// This method is used to whether the given password is correct or not for adjuster
   protected boolean passwordVerification(Adjuster adjuster, int count)
       throws InterruptedException {
     System.out.print("\t\tPlease Enter you Password : ");
@@ -162,7 +162,7 @@ public class Database extends Report {
         int t = 4;
         while (t > 0) {
           System.out.print("\033[H\033[2J");
-          System.out.println("\t\tWelcome to IIT INUSRANCE\n\n\tAdjuster UserName : " +adjuster.getUserName());System.out.print(    "\t\t!!!Incorrect Password Entered many times\n\t\tYour account is blocked for 24hrs\n\t\tPlease approach the Bank Manager for enguiry\n\t\tThe Screen will return to Main Menu in \' "        +        t +        " \' sec\n\t\t\t\t.");
+          System.out.println("\t\tWelcome to IIT INUSRANCE\n\n\tAdjuster UserName : " +adjuster.getUserName());System.out.print(    "\t\t!!!Incorrect Password Entered many times\n\t\tYour account is blocked for 24hrs\n\t\tPlease approach the Agent/Manager for enguiry\n\t\tThe Screen will return to Main Menu in \' "        +        t +        " \' sec\n\t\t\t\t.");
           timeOut(500);
           t--;
         }

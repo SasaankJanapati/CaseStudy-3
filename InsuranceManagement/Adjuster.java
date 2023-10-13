@@ -1,4 +1,6 @@
+package InsuranceManagement;
 import java.util.Scanner;
+
 
 //The adjuster inherits the non-private methods of the Database class
 public class Adjuster extends Database {
@@ -30,7 +32,7 @@ public class Adjuster extends Database {
     return name;
   }
 //parameterized constructor of adjuster object
-  Adjuster(String name, String id, String userName, String password, Database database) {
+  public Adjuster(String name, String id, String userName, String password, Database database) {
     this.name = name;
     this.id = id;
     this.userName = userName;
