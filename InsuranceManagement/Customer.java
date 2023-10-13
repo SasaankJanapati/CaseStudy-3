@@ -2,6 +2,7 @@ package InsuranceManagement;
 import java.util.*;
 
 public class Customer {
+    // this method is used to check the exception on phonenumber.
       void CheckPhoneNumber (String phoneNumber) throws PhoneNumberException
       {
         if(phoneNumber.length()!= 10)
@@ -83,6 +84,7 @@ public class Customer {
         this.name = sc.next();
         System.out.println("Enter the Customer phone number");
         this.phoneNumber = sc.next();
+        // this are written to implement the exception handling.
         try{
           this.CheckPhoneNumber(phoneNumber);
         }
