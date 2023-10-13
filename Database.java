@@ -174,22 +174,22 @@ public class Database extends Report {
     return true;
   }
 // This method is used to check if the the given policy is existing or not
-  protected Policy searchPolicy(String policyId) {
+  protected Policy searchPolicy (String policyId) throws PolicyNotFoundException{
     for (Policy policy : policies) {
       if (policy.getId().compareTo(policyId) == 0) {
         return policy;
       }
     }
-    return null;
+    throw new PolicyNotFoundException();
   }
 // This method is used to check if the the given claim is existing or not
-  protected Claim searchClaims(String claimId) {
+  protected Claim searchClaims(String claimId) throws ClaimNotFoundException{
     for (Claim claim : claims) {
       if (claim.getId().compareTo(claimId) == 0) {
         return claim;
       }
     }
-    return null;
+    throw new ClaimNotFoundException();
   }
 // This method is used to display the polocy id with lapse date
   protected void displayPolicyIdWithLapseDate() {

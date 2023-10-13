@@ -133,12 +133,8 @@ static Scanner sc=new Scanner(System.in);
     System.out.println("Select Policy Id to update:");
     Scanner sc = new Scanner(System.in);
     String policyId = sc.next();
-    Policy policy = database.searchPolicy(policyId);
-    
-    if (policy == null) {
-      System.out.println("Policy does not exist");
-    } 
-    else {
+    try {
+      Policy policy = database.searchPolicy(policyId);
       /*
        * As long as there is a valid input
        * We will keep on asking for input
@@ -164,14 +160,18 @@ static Scanner sc=new Scanner(System.in);
           System.out.println("Invalid Choice");
         }
       }
+      /*
+      * As there is only one option, we aren't checking 
+      */
+      System.out.println("Press 1 to go to Main Menu");
+      int a=sc.nextInt();
+      InsuranceManagement.agentPortalDisplay(agent);
+      management.agentMainMenu(agent,3,database);
+      return;
+    } catch (PolicyNotFoundException execption) {
+      System.out.println(execption.getMessage());
+      management.mainFunction(database);
+      return;
     }
-    /*
-     * As there is only one option, we aren't checking 
-     */
-    System.out.println("Press 1 to go to Main Menu");
-    int a=sc.nextInt();
-    InsuranceManagement.agentPortalDisplay(agent);
-    management.agentMainMenu(agent,3,database);
-    return;
   }
 }

@@ -56,35 +56,40 @@ The report of claim amount credited is added to the financial summaries
       System.out.println("No pending claims to process");
       return;
     }
-    System.out.println("Select Claim id to process");
-    String claimId = sc.next();
-    Claim claim = database.searchClaims(claimId);
-    if (claim == null) {
-      System.out.println("Claim id does not exist");
-    } else {
-      System.out.println("Policy Details");
-      Policy policy = database.searchPolicy(claim.getPolicyId());
-      policy.displayPolicy();
-      System.out.println("Claim Details");
-      claim.displayClaim();
-      boolean validChoice = false;
-      while (!validChoice) {
-        System.out.println("Approve(y) or reject(n)");
-        String choice = sc.next();
-        if (choice.compareTo("y") == 0) {
-          claim.setStatus("approved");
-          System.out.println("You have approved the claim");
-          database.financialSummaryAdder(
-              claim.getPolicyId() + " claimed " + claim.getClaimAmount());
-          validChoice = true;
-        } else if (choice.compareTo("n") == 0) {
-          claim.setStatus("rejected");
-          System.out.println("You have rejected the claim");
-          validChoice = true;
-        } else {
-          System.out.println("Invalid choice");
+    try {
+      System.out.println("Select Claim id to process");
+      String claimId = sc.next();
+      Claim claim = database.searchClaims(claimId);
+      try {
+        Policy policy = database.searchPolicy(claim.getPolicyId());
+        System.out.println("Policy Details");
+        policy.displayPolicy();
+        System.out.println("Claim Details");
+        claim.displayClaim();
+        boolean validChoice = false;
+        while (!validChoice) {
+          System.out.println("Approve(y) or reject(n)");
+          String choice = sc.next();
+          if (choice.compareTo("y") == 0) {
+            claim.setStatus("approved");
+            System.out.println("You have approved the claim");
+            database.financialSummaryAdder(
+                claim.getPolicyId() + " claimed " + claim.getClaimAmount());
+            validChoice = true;
+          } else if (choice.compareTo("n") == 0) {
+            claim.setStatus("rejected");
+            System.out.println("You have rejected the claim");
+            validChoice = true;
+          } else {
+            System.out.println("Invalid choice");
+          }
         }
+      } catch (PolicyNotFoundException exception) {
+        System.out.println(exception.getMessage());
+        
       }
+    } catch (ClaimNotFoundException exception) {
+      System.out.println(exception.getMessage());
     }
   }
 }
